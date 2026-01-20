@@ -1,0 +1,15 @@
+# macOS files
+.DS_Store
+
+# Common Editor files
+*.sublime-workspace
+.vscode/
+
+# Node.js/Dependencies
+/node_modules
+/dist
+/build
+
+# Large video files (exceed GitHub 100MB limit)
+tesla.mp4
+*.mp4

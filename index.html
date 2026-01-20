@@ -12,9 +12,9 @@
     <!-- SEO Meta Tags -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
-    <meta name="author" content="Abenteuer Mieten Amerika LLC">
-    <meta name="publisher" content="Abenteuer Mieten Amerika LLC">
-    <meta name="copyright" content="2025 Abenteuer Mieten Amerika LLC">
+    <meta name="author" content="Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika">
+    <meta name="publisher" content="Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika">
+    <meta name="copyright" content="2026 Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika">
     <meta name="keywords" content="Tesla mieten USA, Route 66 Roadtrip, Camping Roadtrip Amerika, E-Auto Vermietung Las Vegas, Route 66 Tesla, Nationalparks USA, Grand Canyon Tesla, Zion Camping, Yellowstone Roadtrip, Elektroauto Urlaub, Dachzelt Tesla, Model Y Camper, Cybertruck mieten, Chicago Santa Monica Route 66">
     <meta name="language" content="de">
     <meta name="revisit-after" content="7 days">
@@ -56,8 +56,9 @@
     <meta name="twitter:image:alt" content="Tesla Model Y mit Dachzelt vor dem Grand Canyon">
     
     <!-- Favicon -->
-    <link rel="icon" href="flaviconicon.png" type="image/x-icon">
-    <link rel="apple-touch-icon" href="flaviconicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -244,14 +245,15 @@
         .login-btn:hover { background-position: right center; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); color: #fff; }
 
         .btn-main {
-            padding: 1rem 2rem; 
+            padding: 0.7rem 1.5rem;
             background: var(--accent-gradient);
             background-size: 200% auto;
             color: #fff;
-            border-radius: 8px; font-weight: 700; border: none; cursor: pointer;
+            border-radius: 8px; font-weight: 600; border: none; cursor: pointer;
             text-decoration: none; transition: 0.3s;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.85rem;
         }
         .btn-main:hover { background-position: right center; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); }
 
@@ -279,32 +281,34 @@
         .ask-btn:hover { background-position: right center; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
 
         /* --- HERO --- */
-        .hero { position: relative; min-height: 100vh; display: flex; align-items: start; overflow: hidden; padding-top: 140px; padding-bottom: 5rem; }
-        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; }
-        .hero-video { width: 100%; height: 100%; object-fit: cover; transform: scale(1.15) translateY(-50px); }
+        .hero { position: relative; min-height: 75vh; display: flex; align-items: start; overflow: hidden; padding-top: 120px; padding-bottom: 2rem; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; background: #0f172a; display: flex; align-items: flex-start; justify-content: center; }
+        .hero-video { width: 100%; height: auto; object-fit: contain; }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.4) 50%, rgba(15, 23, 42, 0.1) 100%); z-index: 1; }
         .hero-container { position: relative; z-index: 2; max-width: 1600px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; height: 100%; }
         
         .hero-content { animation: slideInRight 1s ease-out; max-width: 800px; margin-top: 0; }
         .hero-badge { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(5px); padding: 0.5rem 1rem; border-radius: 20px; margin-bottom: 1.5rem; font-size: 0.9rem; color: #e2e8f0; }
-        .hero-title { font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.1; font-weight: 700; margin-bottom: 1.5rem; color: #fff; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .hero-title { font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.1; font-weight: 700; margin-bottom: 1rem; color: #fff; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
         .hero-title .highlight { background: linear-gradient(90deg, #0ea5e9, #06b6d4, #14b8a6); background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: led-flow 12s ease infinite; display: inline-block; text-shadow: none; }
-        .hero-desc { font-size: 1.2rem; color: #cbd5e1; max-width: 600px; margin-bottom: 2rem; }
+        .hero-desc { font-size: 1rem; color: #cbd5e1; max-width: 550px; margin-bottom: 1rem; }
 
-        .feature-pills { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 3rem; }
+        .feature-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
         .opal-pill {
             background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.3); border-top: 1px solid rgba(255,255,255,0.6); 
+            border: 1px solid rgba(255,255,255,0.3); border-top: 1px solid rgba(255,255,255,0.6);
             box-shadow: 0 4px 15px rgba(0,0,0,0.1), inset 0 0 10px rgba(255,255,255,0.2);
-            padding: 0.6rem 1.1rem; border-radius: 50px; color: #fff; font-size: 0.85rem; font-weight: 600;
-            display: flex; align-items: center; gap: 0.6rem; transition: 0.3s; cursor: default;
+            padding: 0.4rem 0.8rem; border-radius: 50px; color: #fff; font-size: 0.7rem; font-weight: 600;
+            display: flex; align-items: center; gap: 0.4rem; transition: 0.3s; cursor: default;
         }
         .opal-pill i { color: #22d3ee; filter: drop-shadow(0 0 5px rgba(34, 211, 238, 0.5)); }
 
-        .hero-actions { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
-        .stats-box { display: flex; gap: 2.5rem; padding: 1rem 2rem; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(15px); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
-        .stat-num { font-size: 1.5rem; color: #fff; font-weight: 800; line-height: 1; margin-bottom: 0.2rem; }
+        .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .stats-box { display: flex; gap: 1rem; padding: 0.5rem 1rem; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(15px); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); align-items: center; }
+        .stat-item { text-align: center; }
+        .stat-num { font-size: 0.9rem; color: #fff; font-weight: 700; line-height: 1; margin-bottom: 0.1rem; }
+        .stat-label { font-size: 0.55rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.3px; }
         .stat-label { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
         
         .btn-glass { padding: 1rem 2rem; background: rgba(255,255,255,0.1); color: #fff; border-radius: 8px; font-weight: 600; border: 1px solid rgba(255,255,255,0.2); text-decoration: none; cursor: pointer; transition: 0.3s; }
@@ -1379,14 +1383,26 @@
             }
         }
 
+        /* Testimonials Section with Background */
+        #testimonials {
+            position: relative;
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.9)), url('testimonials-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 5rem 0;
+        }
+        #testimonials .sec-title { color: #fff; }
+        #testimonials .sec-sub { color: rgba(255,255,255,0.8); }
         .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .testimonial-card { background: #fff; padding: 2rem; border-radius: 20px; border: var(--border-light); box-shadow: var(--shadow-card); transition: 0.3s; }
-        .testimonial-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
-        .testimonial-quote { font-size: 1rem; font-style: italic; color: var(--text-muted); margin-bottom: 1.5rem; }
+        .testimonial-card { background: rgba(255,255,255,0.95); padding: 2rem; border-radius: 20px; border: none; box-shadow: 0 15px 40px rgba(0,0,0,0.3); transition: 0.3s; backdrop-filter: blur(10px); }
+        .testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.4); }
+        .testimonial-quote { font-size: 1.05rem; font-style: italic; color: #475569; margin-bottom: 1.5rem; line-height: 1.7; }
+        .testimonial-quote::before { content: '"'; font-size: 3rem; color: #2563eb; line-height: 0; vertical-align: -0.5rem; margin-right: 0.25rem; font-family: Georgia, serif; }
         .testimonial-author { display: flex; align-items: center; gap: 1rem; }
-        .avatar-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
-        .author-info h4 { font-size: 0.9rem; font-weight: 700; margin: 0; }
-        .author-info p { font-size: 0.8rem; color: var(--text-muted); margin: 0; }
+        .avatar-img { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 3px solid #2563eb; }
+        .author-info h4 { font-size: 0.95rem; font-weight: 700; margin: 0; color: #0f172a; }
+        .author-info p { font-size: 0.85rem; color: #64748b; margin: 0; }
 
         .cta { background: #0f172a; color: #fff; text-align: center; }
         .cta-content { max-width: 800px; margin: 0 auto; }
@@ -2681,7 +2697,7 @@
             
             /* Video poster fallback emphasis */
             .hero-video {
-                transform: scale(1.3);
+                transform: none;
             }
             
             /* Prevent body scroll when drawer is open */
@@ -2757,21 +2773,30 @@
             }
             
             /* Testimonials mobile */
+            #testimonials {
+                background-attachment: scroll;
+                padding: 3rem 0;
+            }
+
             .testimonials-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
-            
+
             .testimonial-card {
                 padding: 1.25rem;
             }
-            
+
             .testimonial-card:hover {
                 transform: none;
             }
-            
+
             .testimonial-quote {
                 font-size: 0.95rem;
+            }
+
+            .testimonial-quote::before {
+                font-size: 2rem;
             }
             
             /* AI Concierge mobile */
@@ -3342,91 +3367,93 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Inline Lead Capture (Hero Section) */
+        /* Inline Lead Capture (Hero Section - Right Side) */
         .hero-lead-capture {
-            margin-top: 2rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            max-width: 580px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            margin-top: -40px;
+            padding: 1.2rem 1.4rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 300px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            align-self: flex-start;
+            margin-left: auto;
         }
 
         .lead-capture-badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.3rem;
             background: linear-gradient(135deg, #10b981, #059669);
             color: white;
-            padding: 0.4rem 1rem;
+            padding: 0.25rem 0.6rem;
             border-radius: 50px;
-            font-size: 0.75rem;
+            font-size: 0.6rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 1rem;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.5rem;
         }
 
         .lead-capture-title {
             color: #fff;
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             font-family: 'Space Grotesk', sans-serif;
         }
 
         .lead-capture-benefits {
             list-style: none;
             padding: 0;
-            margin: 0 0 1.5rem 0;
+            margin: 0 0 0.75rem 0;
         }
 
         .lead-capture-benefits li {
             color: #e2e8f0;
-            font-size: 0.9rem;
-            margin-bottom: 0.6rem;
+            font-size: 0.7rem;
+            margin-bottom: 0.35rem;
             display: flex;
-            align-items: center;
-            gap: 0.6rem;
+            align-items: flex-start;
+            gap: 0.4rem;
         }
 
         .lead-capture-benefits li i {
             color: #10b981;
-            font-size: 0.85rem;
+            font-size: 0.65rem;
+            margin-top: 0.15rem;
         }
 
         .lead-capture-privacy {
             color: rgba(255, 255, 255, 0.6);
-            font-size: 0.75rem;
-            margin-top: 1rem;
+            font-size: 0.6rem;
+            margin-top: 0.5rem;
             margin-bottom: 0;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.3rem;
         }
 
         .lead-capture-privacy i {
-            font-size: 0.7rem;
+            font-size: 0.55rem;
         }
 
         .hero-lead-form {
             display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
         .hero-lead-form input[type="email"] {
-            flex: 1;
-            min-width: 200px;
-            padding: 0.875rem 1.25rem;
-            border-radius: 50px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
-            font-size: 0.95rem;
+            font-size: 0.75rem;
             font-family: 'Inter', sans-serif;
             transition: 0.3s;
         }
@@ -3442,24 +3469,25 @@
         }
 
         .hero-lead-form button {
-            padding: 0.875rem 1.5rem;
-            border-radius: 50px;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
             border: none;
             background: #fff;
             color: #0f172a;
-            font-size: 0.95rem;
+            font-size: 0.7rem;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
             white-space: nowrap;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 0.4rem;
         }
 
         .hero-lead-form button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* Sticky Footer Bar */
@@ -3580,7 +3608,7 @@
         /* Floating Concierge Button */
         .floating-concierge {
             position: fixed;
-            bottom: 100px;
+            bottom: 15px;
             right: 24px;
             z-index: 8999;
             display: flex;
@@ -4117,28 +4145,54 @@
                 <button class="legal-modal-close" onclick="closeTermsModal()"><i class="fas fa-times"></i></button>
             </div>
             <div class="legal-modal-content">
-                <h4 data-de="1. Fahrzeugdarstellung" data-en="1. Vehicle Representation">1. Fahrzeugdarstellung</h4>
+                <h4 data-de="1. Vermittlungsplattform" data-en="1. Booking Platform">1. Vermittlungsplattform</h4>
+                <p data-de="Abenteuer Mieten Amerika, betrieben von Gutierrez Ventures LLC, ist eine Buchungs- und Vermittlungsplattform. Wir sind KEIN Fahrzeugvermieter oder Ausrüstungsanbieter." data-en="Abenteuer Mieten Amerika, operated by Gutierrez Ventures LLC, is a booking and facilitation platform. We are NOT a vehicle rental company or equipment provider.">Abenteuer Mieten Amerika, betrieben von Gutierrez Ventures LLC, ist eine Buchungs- und Vermittlungsplattform. Wir sind KEIN Fahrzeugvermieter oder Ausrüstungsanbieter.</p>
+                <p data-de="Wir vermitteln Buchungen zwischen Ihnen und unseren professionell geprüften Partnerunternehmen. Der Mietvertrag für Fahrzeuge und Campingausrüstung wird direkt zwischen Ihnen und dem jeweiligen Partnerunternehmen geschlossen. Sämtliche Bedingungen bezüglich Fahrzeugnutzung, Versicherung, Schäden und Haftung unterliegen den Geschäftsbedingungen des Partnerunternehmens." data-en="We facilitate bookings between you and our professionally vetted partner companies. The rental agreement for vehicles and camping equipment is made directly between you and the respective partner company. All terms regarding vehicle use, insurance, damages, and liability are subject to the partner company's terms and conditions.">Wir vermitteln Buchungen zwischen Ihnen und unseren professionell geprüften Partnerunternehmen. Der Mietvertrag für Fahrzeuge und Campingausrüstung wird direkt zwischen Ihnen und dem jeweiligen Partnerunternehmen geschlossen. Sämtliche Bedingungen bezüglich Fahrzeugnutzung, Versicherung, Schäden und Haftung unterliegen den Geschäftsbedingungen des Partnerunternehmens.</p>
+                <p data-de="Abenteuer Mieten Amerika übernimmt keine Haftung für: Fahrzeugmängel, Unfälle oder Schäden; Campingausrüstung und deren Nutzung; Versicherungsangelegenheiten; Handlungen oder Versäumnisse der Partnerunternehmen." data-en="Abenteuer Mieten Amerika assumes no liability for: Vehicle defects, accidents, or damages; Camping equipment and its use; Insurance matters; Acts or omissions of partner companies.">Abenteuer Mieten Amerika übernimmt keine Haftung für: Fahrzeugmängel, Unfälle oder Schäden; Campingausrüstung und deren Nutzung; Versicherungsangelegenheiten; Handlungen oder Versäumnisse der Partnerunternehmen.</p>
+
+                <h4 data-de="2. Fahrzeugdarstellung" data-en="2. Vehicle Representation">2. Fahrzeugdarstellung</h4>
                 <p data-de="Die auf dieser Website abgebildeten Fahrzeuge dienen ausschließlich zu Illustrationszwecken. Tatsächliche Fahrzeugfarbe, Ausstattung, Modellvariante und Baujahr können von den Abbildungen abweichen. Wir garantieren ein Fahrzeug der gebuchten Kategorie oder höher." data-en="Vehicles shown on this website are for illustration purposes only. Actual vehicle color, equipment, model variant, and year may differ from images. We guarantee a vehicle in the booked category or higher.">Die auf dieser Website abgebildeten Fahrzeuge dienen ausschließlich zu Illustrationszwecken. Tatsächliche Fahrzeugfarbe, Ausstattung, Modellvariante und Baujahr können von den Abbildungen abweichen. Wir garantieren ein Fahrzeug der gebuchten Kategorie oder höher.</p>
-                
-                <h4 data-de="2. Camping-Ausrüstung" data-en="2. Camping Equipment">2. Camping-Ausrüstung</h4>
+
+                <h4 data-de="3. Camping-Ausrüstung" data-en="3. Camping Equipment">3. Camping-Ausrüstung</h4>
                 <p data-de="Die enthaltene Camping-Ausrüstung kann je nach Verfügbarkeit variieren. Wir bemühen uns, gleichwertige oder bessere Alternativen bereitzustellen, falls bestimmte Artikel nicht verfügbar sind. Die Grundausstattung umfasst immer Schlafmöglichkeit, Kochausrüstung und Kühlmöglichkeit." data-en="Included camping equipment may vary based on availability. We strive to provide equivalent or better alternatives if certain items are unavailable. Basic equipment always includes sleeping arrangements, cooking gear, and cooling options.">Die enthaltene Camping-Ausrüstung kann je nach Verfügbarkeit variieren. Wir bemühen uns, gleichwertige oder bessere Alternativen bereitzustellen, falls bestimmte Artikel nicht verfügbar sind. Die Grundausstattung umfasst immer Schlafmöglichkeit, Kochausrüstung und Kühlmöglichkeit.</p>
-                
-                <h4 data-de="3. Preise" data-en="3. Pricing">3. Preise</h4>
+
+                <h4 data-de="4. Preise" data-en="4. Pricing">4. Preise</h4>
                 <p data-de="Alle angegebenen Preise sind Richtwerte und können je nach Saison, Verfügbarkeit und Mietdauer variieren. Der endgültige Preis wird bei der Buchungsbestätigung mitgeteilt. Versicherung und Supercharger-Nutzung sind im Mietpreis enthalten. Zusätzliche Gebühren können für Zusatzfahrer und Einwegmieten anfallen." data-en="All listed prices are indicative and may vary based on season, availability, and rental duration. Final pricing will be confirmed upon booking. Insurance and Supercharger usage are included in the rental price. Additional fees may apply for additional drivers and one-way rentals.">Alle angegebenen Preise sind Richtwerte und können je nach Saison, Verfügbarkeit und Mietdauer variieren. Der endgültige Preis wird bei der Buchungsbestätigung mitgeteilt. Versicherung und Supercharger-Nutzung sind im Mietpreis enthalten. Zusätzliche Gebühren können für Zusatzfahrer und Einwegmieten anfallen.</p>
-                
-                <h4 data-de="4. Mietvoraussetzungen" data-en="4. Rental Requirements">4. Mietvoraussetzungen</h4>
+
+                <h4 data-de="5. Mietvoraussetzungen" data-en="5. Rental Requirements">5. Mietvoraussetzungen</h4>
                 <p data-de="Mieter müssen mindestens 25 Jahre alt sein und einen gültigen Führerschein besitzen, der seit mindestens 2 Jahren ausgestellt ist. Ein internationaler Führerschein wird für nicht-US-Führerscheine empfohlen. Eine Kreditkarte auf den Namen des Hauptfahrers ist erforderlich." data-en="Renters must be at least 25 years old and hold a valid driver's license issued for at least 2 years. An international driving permit is recommended for non-US licenses. A credit card in the primary driver's name is required.">Mieter müssen mindestens 25 Jahre alt sein und einen gültigen Führerschein besitzen, der seit mindestens 2 Jahren ausgestellt ist. Ein internationaler Führerschein wird für nicht-US-Führerscheine empfohlen. Eine Kreditkarte auf den Namen des Hauptfahrers ist erforderlich.</p>
-                
-                <h4 data-de="5. Tesla Supercharger" data-en="5. Tesla Supercharger">5. Tesla Supercharger</h4>
+
+                <h4 data-de="6. Tesla Supercharger" data-en="6. Tesla Supercharger">6. Tesla Supercharger</h4>
                 <p data-de="Ladekosten am Tesla Supercharger-Netzwerk sind im Mietpreis enthalten. Laden Sie Ihr Fahrzeug während der gesamten Mietdauer ohne zusätzliche Kosten auf – ein exklusiver Vorteil bei Abenteuer Mieten Amerika." data-en="Charging costs at the Tesla Supercharger network are included in the rental price. Charge your vehicle throughout your entire rental period at no additional cost – an exclusive benefit with Abenteuer Mieten Amerika.">Ladekosten am Tesla Supercharger-Netzwerk sind im Mietpreis enthalten. Laden Sie Ihr Fahrzeug während der gesamten Mietdauer ohne zusätzliche Kosten auf – ein exklusiver Vorteil bei Abenteuer Mieten Amerika.</p>
-                
-                <h4 data-de="6. Routenvorschläge & KML-Dateien" data-en="6. Route Suggestions & KML Files">6. Routenvorschläge & KML-Dateien</h4>
+
+                <h4 data-de="7. Routenvorschläge & KML-Dateien" data-en="7. Route Suggestions & KML Files">7. Routenvorschläge & KML-Dateien</h4>
                 <p data-de="Alle auf dieser Website bereitgestellten Routen, Reisepläne und KML-Dateien dienen ausschließlich zu Informations- und Inspirationszwecken. Sie stellen unverbindliche Vorschläge dar und keine garantierten oder empfohlenen Reiserouten." data-en="All routes, itineraries, and KML files provided on this website are for informational and inspirational purposes only. They represent non-binding suggestions and not guaranteed or recommended travel routes.">Alle auf dieser Website bereitgestellten Routen, Reisepläne und KML-Dateien dienen ausschließlich zu Informations- und Inspirationszwecken. Sie stellen unverbindliche Vorschläge dar und keine garantierten oder empfohlenen Reiserouten.</p>
                 <p data-de="Abenteuer Mieten Amerika übernimmt keine Haftung für: Straßensperrungen, Baustellen, Umleitungen oder geänderte Straßenverhältnisse; Wetterbedingungen, Naturereignisse oder saisonale Einschränkungen; Verfügbarkeit oder Zustand von Campingplätzen, Ladestationen oder Sehenswürdigkeiten; Zeitangaben, Entfernungen oder Fahrtdauer; Aktualität der bereitgestellten Informationen." data-en="Abenteuer Mieten Amerika assumes no liability for: Road closures, construction, detours, or changed road conditions; Weather conditions, natural events, or seasonal restrictions; Availability or condition of campsites, charging stations, or attractions; Time estimates, distances, or travel duration; Currency of provided information.">Abenteuer Mieten Amerika übernimmt keine Haftung für: Straßensperrungen, Baustellen, Umleitungen oder geänderte Straßenverhältnisse; Wetterbedingungen, Naturereignisse oder saisonale Einschränkungen; Verfügbarkeit oder Zustand von Campingplätzen, Ladestationen oder Sehenswürdigkeiten; Zeitangaben, Entfernungen oder Fahrtdauer; Aktualität der bereitgestellten Informationen.</p>
                 <p data-de="Mieter sind selbst verantwortlich für: Die Überprüfung aktueller Straßen- und Wetterbedingungen vor Fahrtantritt; Die Einhaltung aller Verkehrsregeln und lokalen Vorschriften; Die eigenständige Routenplanung und Navigation; Ausreichende Reisevorbereitung und Reservierungen." data-en="Renters are responsible for: Checking current road and weather conditions before departure; Compliance with all traffic rules and local regulations; Independent route planning and navigation; Adequate travel preparation and reservations.">Mieter sind selbst verantwortlich für: Die Überprüfung aktueller Straßen- und Wetterbedingungen vor Fahrtantritt; Die Einhaltung aller Verkehrsregeln und lokalen Vorschriften; Die eigenständige Routenplanung und Navigation; Ausreichende Reisevorbereitung und Reservierungen.</p>
                 <p data-de="Die Nutzung unserer Routenvorschläge erfolgt auf eigenes Risiko. Wir empfehlen, stets aktuelle Informationen von offiziellen Quellen (Nationalpark Service, Verkehrsbehörden, Wetterdienste) einzuholen." data-en="Use of our route suggestions is at your own risk. We recommend always obtaining current information from official sources (National Park Service, traffic authorities, weather services).">Die Nutzung unserer Routenvorschläge erfolgt auf eigenes Risiko. Wir empfehlen, stets aktuelle Informationen von offiziellen Quellen (Nationalpark Service, Verkehrsbehörden, Wetterdienste) einzuholen.</p>
-                
-                <p class="legal-modal-footer" data-de="Stand: Januar 2025 | Abenteuer Mieten Amerika LLC, Las Vegas, NV" data-en="Last updated: January 2025 | Abenteuer Mieten Amerika LLC, Las Vegas, NV">Stand: Januar 2025 | Abenteuer Mieten Amerika LLC, Las Vegas, NV</p>
+
+                <h4 data-de="8. Concierge-Service" data-en="8. Concierge Service">8. Concierge-Service</h4>
+                <p data-de="Unser Concierge-Service bietet Empfehlungen und Unterstützung bei der Reiseplanung. Alle Empfehlungen für Restaurants, Sehenswürdigkeiten, Campingplätze und Aktivitäten sind unverbindliche Vorschläge." data-en="Our concierge service provides recommendations and travel planning assistance. All recommendations for restaurants, attractions, campsites, and activities are non-binding suggestions.">Unser Concierge-Service bietet Empfehlungen und Unterstützung bei der Reiseplanung. Alle Empfehlungen für Restaurants, Sehenswürdigkeiten, Campingplätze und Aktivitäten sind unverbindliche Vorschläge.</p>
+                <p data-de="Wir garantieren nicht: Verfügbarkeit empfohlener Orte oder Dienstleistungen; Qualität, Sicherheit oder Eignung empfohlener Angebote; Aktualität von Öffnungszeiten oder Preisen." data-en="We do not guarantee: Availability of recommended places or services; Quality, safety, or suitability of recommended offerings; Accuracy of operating hours or prices.">Wir garantieren nicht: Verfügbarkeit empfohlener Orte oder Dienstleistungen; Qualität, Sicherheit oder Eignung empfohlener Angebote; Aktualität von Öffnungszeiten oder Preisen.</p>
+                <p data-de="Die endgültige Entscheidung über Aktivitäten und Reiseziele liegt ausschließlich beim Kunden." data-en="The final decision regarding activities and destinations rests solely with the customer.">Die endgültige Entscheidung über Aktivitäten und Reiseziele liegt ausschließlich beim Kunden.</p>
+
+                <h4 data-de="9. Klausy App - KI-Routenplaner" data-en="9. Klausy App - AI Route Planner">9. Klausy App - KI-Routenplaner</h4>
+                <p data-de="Die Klausy App bietet KI-gestützte Routenvorschläge und Reiseplanung. Diese Informationen dienen ausschließlich zu Orientierungszwecken." data-en="The Klausy App provides AI-powered route suggestions and trip planning. This information is for guidance purposes only.">Die Klausy App bietet KI-gestützte Routenvorschläge und Reiseplanung. Diese Informationen dienen ausschließlich zu Orientierungszwecken.</p>
+                <p data-de="Wichtige Hinweise: Routenvorschläge ersetzen keine eigenständige Prüfung der Strecke; Straßenbedingungen, Sperrungen und Wetter können sich jederzeit ändern; Verfügbarkeit und Funktionsfähigkeit von Ladestationen wird nicht garantiert; Entfernungs- und Zeitangaben sind Schätzungen; In abgelegenen Gebieten kann die GPS-Genauigkeit eingeschränkt sein." data-en="Important notices: Route suggestions do not replace independent verification of the route; Road conditions, closures, and weather can change at any time; Availability and functionality of charging stations is not guaranteed; Distance and time estimates are approximations; GPS accuracy may be limited in remote areas.">Wichtige Hinweise: Routenvorschläge ersetzen keine eigenständige Prüfung der Strecke; Straßenbedingungen, Sperrungen und Wetter können sich jederzeit ändern; Verfügbarkeit und Funktionsfähigkeit von Ladestationen wird nicht garantiert; Entfernungs- und Zeitangaben sind Schätzungen; In abgelegenen Gebieten kann die GPS-Genauigkeit eingeschränkt sein.</p>
+                <p data-de="Der Nutzer ist verantwortlich für: Überprüfung aktueller Straßen- und Wetterbedingungen; Sicherstellung ausreichender Fahrzeugreichweite; Alternative Routenplanung; Einhaltung aller Verkehrsregeln." data-en="The user is responsible for: Verifying current road and weather conditions; Ensuring sufficient vehicle range; Alternative route planning; Compliance with all traffic laws.">Der Nutzer ist verantwortlich für: Überprüfung aktueller Straßen- und Wetterbedingungen; Sicherstellung ausreichender Fahrzeugreichweite; Alternative Routenplanung; Einhaltung aller Verkehrsregeln.</p>
+                <p data-de="Abenteuer Mieten Amerika und Gutierrez Ventures LLC haften nicht für Entscheidungen, die auf Basis der App-Empfehlungen getroffen werden." data-en="Abenteuer Mieten Amerika and Gutierrez Ventures LLC are not liable for decisions made based on app recommendations.">Abenteuer Mieten Amerika und Gutierrez Ventures LLC haften nicht für Entscheidungen, die auf Basis der App-Empfehlungen getroffen werden.</p>
+
+                <h4 data-de="10. Allgemeine Reiserisiken" data-en="10. General Travel Risks">10. Allgemeine Reiserisiken</h4>
+                <p data-de="Reisen, insbesondere Roadtrips und Camping in den USA, beinhalten inhärente Risiken, darunter: Unvorhersehbare Wetterbedingungen; Abgelegene Gebiete mit eingeschränktem Mobilfunkempfang; Wildlife und Naturgefahren; Höhenlage und körperliche Belastung." data-en="Travel, especially road trips and camping in the USA, involves inherent risks including: Unpredictable weather conditions; Remote areas with limited cell service; Wildlife and natural hazards; Altitude and physical exertion.">Reisen, insbesondere Roadtrips und Camping in den USA, beinhalten inhärente Risiken, darunter: Unvorhersehbare Wetterbedingungen; Abgelegene Gebiete mit eingeschränktem Mobilfunkempfang; Wildlife und Naturgefahren; Höhenlage und körperliche Belastung.</p>
+                <p data-de="Wir empfehlen dringend den Abschluss einer Reiseversicherung." data-en="We strongly recommend purchasing travel insurance."><strong>Wir empfehlen dringend den Abschluss einer Reiseversicherung.</strong></p>
+                <p data-de="Abenteuer Mieten Amerika haftet nicht für: Reiseunterbrechungen oder -stornierungen; Wetter- oder naturbedingte Ereignisse; Persönliche Verletzungen bei Outdoor-Aktivitäten; Verlust oder Diebstahl persönlicher Gegenstände." data-en="Abenteuer Mieten Amerika is not liable for: Trip interruptions or cancellations; Weather or nature-related events; Personal injuries during outdoor activities; Loss or theft of personal belongings.">Abenteuer Mieten Amerika haftet nicht für: Reiseunterbrechungen oder -stornierungen; Wetter- oder naturbedingte Ereignisse; Persönliche Verletzungen bei Outdoor-Aktivitäten; Verlust oder Diebstahl persönlicher Gegenstände.</p>
+
+                <h4 data-de="11. Haftungsbeschränkung" data-en="11. Limitation of Liability">11. Haftungsbeschränkung</h4>
+                <p data-de="Die Haftung von Abenteuer Mieten Amerika / Gutierrez Ventures LLC ist beschränkt auf die von uns direkt erbrachten Dienstleistungen: Buchungsvermittlung, Concierge-Beratung und die Klausy App." data-en="The liability of Abenteuer Mieten Amerika / Gutierrez Ventures LLC is limited to services we directly provide: booking facilitation, concierge consultation, and the Klausy App.">Die Haftung von Abenteuer Mieten Amerika / Gutierrez Ventures LLC ist beschränkt auf die von uns direkt erbrachten Dienstleistungen: Buchungsvermittlung, Concierge-Beratung und die Klausy App.</p>
+                <p data-de="Die maximale Haftungssumme ist auf den vom Kunden gezahlten Servicebetrag begrenzt." data-en="Maximum liability is limited to the service fee paid by the customer.">Die maximale Haftungssumme ist auf den vom Kunden gezahlten Servicebetrag begrenzt.</p>
+                <p data-de="Diese Einschränkungen gelten im gesetzlich zulässigen Rahmen." data-en="These limitations apply to the extent permitted by law.">Diese Einschränkungen gelten im gesetzlich zulässigen Rahmen.</p>
+
+                <p class="legal-modal-footer" data-de="Stand: Januar 2026 | Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika, Las Vegas, NV" data-en="Last updated: January 2026 | Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika, Las Vegas, NV">Stand: Januar 2026 | Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika, Las Vegas, NV</p>
             </div>
         </div>
     </div>
@@ -4173,7 +4227,7 @@
                 <h4 data-de="Kontakt" data-en="Contact">Kontakt</h4>
                 <p data-de="Bei Fragen zum Datenschutz kontaktieren Sie uns unter: info@abenteuermietenamerika.de" data-en="For privacy-related questions, contact us at: info@abenteuermietenamerika.de">Bei Fragen zum Datenschutz kontaktieren Sie uns unter: info@abenteuermietenamerika.de</p>
                 
-                <p class="legal-modal-footer" data-de="Stand: Januar 2025" data-en="Last updated: January 2025">Stand: Januar 2025</p>
+                <p class="legal-modal-footer" data-de="Stand: Januar 2026" data-en="Last updated: January 2026">Stand: Januar 2026</p>
             </div>
         </div>
     </div>
@@ -4187,29 +4241,31 @@
             </div>
             <div class="legal-modal-content">
                 <h4 data-de="Angaben gemäß § 5 TMG" data-en="Information according to § 5 TMG">Angaben gemäß § 5 TMG</h4>
-                
+
                 <p style="font-size: 1rem; color: #0f172a; font-weight: 500; margin-bottom: 0.5rem;">
-                    Abenteuer Mieten Amerika <span style="font-style: italic; color: #64748b; font-weight: 400;">(in Gründung)</span>
+                    Gutierrez Ventures LLC<br>
+                    <span style="font-style: italic; color: #64748b; font-weight: 400;">DBA Abenteuer Mieten Amerika</span>
                 </p>
                 <p>Anja Gutierrez<br>
-                Las Vegas, Nevada<br>
+                6445 S Tenaya Way, Suite 110<br>
+                Las Vegas, NV 89113<br>
                 USA</p>
-                
+
                 <h4 data-de="Kontakt" data-en="Contact">Kontakt</h4>
                 <p>
-                    <i class="fas fa-envelope" style="color: #2563eb; margin-right: 0.5rem;"></i> 
+                    <i class="fas fa-envelope" style="color: #2563eb; margin-right: 0.5rem;"></i>
                     <a href="mailto:info@abenteuermietenamerika.de" style="color: #2563eb;">info@abenteuermietenamerika.de</a><br>
-                    <i class="fas fa-phone" style="color: #2563eb; margin-right: 0.5rem;"></i> 
+                    <i class="fas fa-phone" style="color: #2563eb; margin-right: 0.5rem;"></i>
                     <a href="tel:+13239177708" style="color: #2563eb;">+1 (323) 917-7708</a>
                 </p>
-                
-                <h4 data-de="Hinweis" data-en="Note">Hinweis</h4>
-                <p data-de="Dieses Unternehmen befindet sich derzeit in der Gründungsphase. Die offizielle Gewerbeanmeldung erfolgt vor Aufnahme des Geschäftsbetriebs. Alle Angaben auf dieser Website dienen der Information über unser geplantes Serviceangebot." data-en="This company is currently in the formation phase. Official business registration will be completed before commencement of operations. All information on this website serves to inform about our planned service offering.">Dieses Unternehmen befindet sich derzeit in der Gründungsphase. Die offizielle Gewerbeanmeldung erfolgt vor Aufnahme des Geschäftsbetriebs. Alle Angaben auf dieser Website dienen der Information über unser geplantes Serviceangebot.</p>
-                
+
+                <h4 data-de="Geschäftsmodell" data-en="Business Model">Geschäftsmodell</h4>
+                <p data-de="Abenteuer Mieten Amerika ist eine Buchungs- und Vermittlungsplattform. Wir vermitteln Mietwagen und Campingausrüstung über professionell geprüfte Partnerunternehmen. Details finden Sie in unseren AGB." data-en="Abenteuer Mieten Amerika is a booking and facilitation platform. We facilitate vehicle and camping equipment rentals through professionally vetted partner companies. Details can be found in our Terms & Conditions.">Abenteuer Mieten Amerika ist eine Buchungs- und Vermittlungsplattform. Wir vermitteln Mietwagen und Campingausrüstung über professionell geprüfte Partnerunternehmen. Details finden Sie in unseren AGB.</p>
+
                 <h4 data-de="Streitschlichtung" data-en="Dispute Resolution">Streitschlichtung</h4>
                 <p data-de="Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen." data-en="The European Commission provides a platform for online dispute resolution (OS): https://ec.europa.eu/consumers/odr. We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.">Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-                
-                <p class="legal-modal-footer" data-de="Stand: Januar 2025" data-en="Last updated: January 2025">Stand: Januar 2025</p>
+
+                <p class="legal-modal-footer" data-de="Stand: Januar 2026" data-en="Last updated: January 2026">Stand: Januar 2026</p>
             </div>
         </div>
     </div>
@@ -4327,9 +4383,9 @@
                     <i class="fas fa-phone"></i>
                     +1 (323) 917-7708
                 </a>
-                <a href="/cdn-cgi/l/email-protection#147d7a727b547576717a6071617166797d7160717a757971667d7f753a7071">
+                <a href="mailto:info@abenteuermietenamerika.de">
                     <i class="fas fa-envelope"></i>
-                    <span class="__cf_email__" data-cfemail="7811161e1738191a1d160c1d0d1d0a15111d0c1d1619151d0a111319561c1d">[email&#160;protected]</span>
+                    info@abenteuermietenamerika.de
                 </a>
             </div>
         </div>
@@ -4387,9 +4443,10 @@
                         <a href="#booking-bar" class="btn-main"><span data-de="Abenteuer Starten" data-en="Start Adventure">Abenteuer Starten</span> <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
+            </div>
 
-                <!-- Inline Lead Capture -->
-                <div class="hero-lead-capture" id="heroLeadCapture">
+            <!-- Inline Lead Capture - Right Side -->
+            <div class="hero-lead-capture" id="heroLeadCapture">
                     <div class="lead-capture-badge" data-de="Kostenlos herunterladen" data-en="Free Download"><i class="fas fa-download"></i> <span>Kostenlos herunterladen</span></div>
                     <h3 class="lead-capture-title" data-de="Der ultimative USA Roadtrip Guide" data-en="The Ultimate USA Roadtrip Guide">Der ultimative USA Roadtrip Guide</h3>
                     <ul class="lead-capture-benefits">
@@ -4405,7 +4462,6 @@
                         </button>
                     </form>
                     <p class="lead-capture-privacy" data-de="Wir respektieren Ihre Privatsphäre. Kein Spam." data-en="We respect your privacy. No spam."><i class="fas fa-lock"></i> <span>Wir respektieren Ihre Privatsphäre. Kein Spam.</span></p>
-                </div>
             </div>
         </div>
     </section>
@@ -5245,13 +5301,13 @@
                 <div class="footer-section">
                     <h3 data-de="Kontakt" data-en="Contact">Kontakt</h3>
                     <p><i class="fas fa-phone"></i> +1 (323) 917-7708</p>
-                    <p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection#a1c8cfc7cee1c0c3c4cfd5c4d4c4d3ccc8c4d5c4cfc0ccc4d3c8cac08fc5c4"><span class="__cf_email__" data-cfemail="b6dfd8d0d9f6d7d4d3d8c2d3c3d3c4dbdfd3c2d3d8d7dbd3c4dfddd798d2d3">[email&#160;protected]</span></a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@abenteuermietenamerika.de">info@abenteuermietenamerika.de</a></p>
                     <p><i class="fas fa-clock"></i> <span data-de="Mo-So: 9:00 - 18:00 Uhr" data-en="Mon-Sun: 9:00 AM - 6:00 PM">Mo-So: 9:00 - 18:00 Uhr</span></p>
                 </div>
 
                 <div class="footer-section">
                     <h3 data-de="Adresse" data-en="Address">Adresse</h3>
-                    <p>Abenteuer Mieten Amerika LLC<br>6445 S Tenaya Way, Suite 110<br>Las Vegas, NV 89113<br>USA</p>
+                    <p>Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika<br>6445 S Tenaya Way, Suite 110<br>Las Vegas, NV 89113<br>USA</p>
                 </div>
 
                 <div class="footer-section">
@@ -5282,12 +5338,12 @@
             </div>
 
             <div class="footer-bottom">
-                <p><span data-de="© 2025 Abenteuer Mieten Amerika LLC. Alle Rechte vorbehalten." data-en="© 2025 Abenteuer Mieten Amerika LLC. All rights reserved.">© 2025 Abenteuer Mieten Amerika LLC. Alle Rechte vorbehalten.</span> | Made with <i class="fas fa-heart"></i> for adventurers</p>
+                <p><span data-de="© 2026 Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika. Alle Rechte vorbehalten." data-en="© 2026 Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika. All rights reserved.">© 2026 Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika. Alle Rechte vorbehalten.</span> | Made with <i class="fas fa-heart"></i> for adventurers</p>
             </div>
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Header Scroll
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {

@@ -1390,19 +1390,21 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            padding: 5rem 0;
+            padding: 2.5rem 0;
         }
         #testimonials .sec-title { color: #fff; }
         #testimonials .sec-sub { color: rgba(255,255,255,0.8); }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .testimonial-card { background: rgba(255,255,255,0.95); padding: 2rem; border-radius: 20px; border: none; box-shadow: 0 15px 40px rgba(0,0,0,0.3); transition: 0.3s; backdrop-filter: blur(10px); }
-        .testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.4); }
-        .testimonial-quote { font-size: 1.05rem; font-style: italic; color: #475569; margin-bottom: 1.5rem; line-height: 1.7; }
-        .testimonial-quote::before { content: '"'; font-size: 3rem; color: #2563eb; line-height: 0; vertical-align: -0.5rem; margin-right: 0.25rem; font-family: Georgia, serif; }
-        .testimonial-author { display: flex; align-items: center; gap: 1rem; }
-        .avatar-img { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 3px solid #2563eb; }
-        .author-info h4 { font-size: 0.95rem; font-weight: 700; margin: 0; color: #0f172a; }
-        .author-info p { font-size: 0.85rem; color: #64748b; margin: 0; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.25rem; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .testimonial-card { background: rgba(255,255,255,0.95); padding: 0; border-radius: 10px; border: none; box-shadow: 0 8px 20px rgba(0,0,0,0.2); transition: 0.3s; backdrop-filter: blur(10px); display: flex; flex-direction: column; overflow: hidden; }
+        .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.3); }
+        .testimonial-card .avatar-wrapper { width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+        .avatar-img { width: 100%; height: 100%; border-radius: 0; object-fit: cover; object-position: center top; border: none; }
+        .testimonial-content { padding: 0.85rem 1rem 1rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .testimonial-quote { font-size: 0.8rem; font-style: italic; color: #475569; margin-bottom: 0.5rem; line-height: 1.45; flex-grow: 1; }
+        .testimonial-quote::before { content: '"'; font-size: 1.25rem; color: #2563eb; line-height: 0; vertical-align: -0.15rem; margin-right: 0.05rem; font-family: Georgia, serif; }
+        .testimonial-author { margin-top: auto; }
+        .author-info h4 { font-size: 0.9rem; font-weight: 700; margin: 0; color: #0f172a; }
+        .author-info p { font-size: 0.8rem; color: #64748b; margin: 0; }
 
         .cta { background: #0f172a; color: #fff; text-align: center; }
         .cta-content { max-width: 800px; margin: 0 auto; }
@@ -2780,23 +2782,19 @@
 
             .testimonials-grid {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 1.5rem;
             }
 
-            .testimonial-card {
+            .testimonial-card .avatar-wrapper {
+                aspect-ratio: 16/9;
+            }
+
+            .testimonial-content {
                 padding: 1.25rem;
             }
 
             .testimonial-card:hover {
                 transform: none;
-            }
-
-            .testimonial-quote {
-                font-size: 0.95rem;
-            }
-
-            .testimonial-quote::before {
-                font-size: 2rem;
             }
             
             /* AI Concierge mobile */
@@ -3728,31 +3726,56 @@
         }
 
         .founder-magazine {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+
+        .founder-photo-column {
+            display: flex;
+            flex-direction: column;
         }
 
         .founder-top-row {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 2.5rem;
-            margin-bottom: 2rem;
-            align-items: center;
+            display: contents;
         }
 
         .founder-photo img {
             width: 100%;
-            aspect-ratio: 3/4;
+            height: 100%;
             object-fit: cover;
             object-position: center top;
             border-radius: 16px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.12);
         }
 
+        .founder-cards-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .founder-cards-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .founder-cards-row .founder-card {
+            padding: 1.25rem 1.5rem;
+        }
+
+        .founder-cards-row .founder-card p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
         .founder-card {
             background: #fff;
-            border-radius: 20px;
-            padding: 2rem 2.5rem;
+            border-radius: 16px;
+            padding: 1.5rem 1.75rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
             border-left: 4px solid #e07b39;
         }
@@ -3761,11 +3784,11 @@
         .founder-card.green { border-left-color: #16a34a; }
 
         .founder-card-label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             color: #e07b39;
         }
 
@@ -3774,39 +3797,27 @@
 
         .founder-card p {
             color: #334155;
-            font-size: 1.05rem;
-            line-height: 1.9;
+            font-size: 0.9rem;
+            line-height: 1.7;
             font-style: italic;
             margin: 0;
         }
 
         .founder-bottom-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .founder-bottom-row .founder-card {
-            padding: 2rem;
-        }
-
-        .founder-bottom-row .founder-card p {
-            font-size: 1rem;
-            line-height: 1.8;
+            display: none;
         }
 
         .founder-signature {
             text-align: right;
-            margin-top: 1.5rem;
-            padding-right: 1rem;
+            margin-top: 1rem;
             font-family: 'Georgia', serif;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #334155;
             font-style: italic;
         }
 
         @media (max-width: 900px) {
-            .founder-top-row {
+            .founder-magazine {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
@@ -3818,23 +3829,72 @@
 
             .founder-photo img {
                 max-width: 220px;
+                height: auto;
+                border-radius: 12px;
             }
 
-            .founder-bottom-row {
+            .founder-cards-column {
+                gap: 1rem;
+            }
+
+            .founder-cards-row {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1rem;
             }
 
             .founder-card {
-                padding: 1.5rem;
+                padding: 1.25rem 1.5rem;
+                border-radius: 12px;
             }
 
             .founder-card p {
-                font-size: 0.95rem;
+                font-size: 0.85rem;
+                line-height: 1.6;
+            }
+
+            .founder-card-label {
+                font-size: 0.65rem;
+                margin-bottom: 0.5rem;
             }
 
             .founder-signature {
                 text-align: center;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #founder {
+                padding: 2.5rem 0;
+            }
+
+            #founder .sec-head {
+                margin-bottom: 1.5rem !important;
+            }
+
+            #founder .sec-title {
+                font-size: 1.75rem;
+            }
+
+            #founder .sec-sub {
+                font-size: 0.95rem !important;
+            }
+
+            .founder-photo img {
+                max-width: 180px;
+            }
+
+            .founder-card {
+                padding: 1rem 1.25rem;
+            }
+
+            .founder-card p {
+                font-size: 0.8rem;
+            }
+
+            .founder-signature {
+                font-size: 1rem;
+                margin-top: 0.5rem;
             }
         }
     </style>
@@ -3926,7 +3986,7 @@
             },
             {
                 "@type": "LocationFeatureSpecification",
-                "name": "Versicherung inklusive",
+                "name": "Geprüfte Exklusivpartner",
                 "value": true
             },
             {
@@ -4413,7 +4473,7 @@
                 <div class="feature-pills">
                     <div class="opal-pill" data-de="Elektroautos" data-en="Electric Cars"><i class="fas fa-bolt"></i> <span>Elektroautos</span></div>
                     <div class="opal-pill" data-de="Supercharger Inklusive" data-en="Free Supercharging"><i class="fas fa-charging-station"></i> <span>Supercharger Inklusive</span></div>
-                    <div class="opal-pill" data-de="Versicherung Inklusive" data-en="Insurance Included"><i class="fas fa-shield-alt"></i> <span>Versicherung Inklusive</span></div>
+                    <div class="opal-pill" data-de="Geprüfte Exklusivpartner" data-en="Exclusively Vetted Partners"><i class="fas fa-handshake"></i> <span>Geprüfte Exklusivpartner</span></div>
                     <div class="opal-pill" data-de="Camping-Ausrüstung" data-en="Camping Gear"><i class="fas fa-campground"></i> <span>Camping-Ausrüstung</span></div>
                     <div class="opal-pill" data-de="KI-Concierge" data-en="AI Concierge"><i class="fas fa-robot"></i> <span>KI-Concierge</span></div>
                     <div class="opal-pill"><i class="fas fa-headset"></i> <span>24/7 Support</span></div>
@@ -4422,15 +4482,15 @@
                 <div class="hero-actions">
                     <div class="stats-box">
                         <div class="stat-item">
-                            <div class="stat-num">0g</div>
+                            <div class="stat-num" data-de="0g" data-en="0g">0g</div>
                             <div class="stat-label" data-de="CO₂ Emissionen" data-en="CO₂ Emissions">CO₂ Emissionen</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-num">530km</div>
+                            <div class="stat-num" data-de="530km" data-en="330mi">530km</div>
                             <div class="stat-label" data-de="Reichweite" data-en="Range">Reichweite</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-num">Camp</div>
+                            <div class="stat-num" data-de="Camp" data-en="Camp">Camp</div>
                             <div class="stat-label" data-de="Modus Bereit" data-en="Mode Ready">Modus Bereit</div>
                         </div>
                         <div class="stat-item">
@@ -4527,19 +4587,19 @@
         <div class="container">
             <div class="agency-grid">
                 <div class="agency-card">
-                    <i class="fas fa-handshake"></i>
-                    <h3 data-de="Das Netzwerk" data-en="The Network">Das Netzwerk</h3>
-                    <p data-de="Wir beziehen Fahrzeuge aus exklusiven lokalen Flotten. Zugang zu Premium-Teslas, die bei Standard-Agenturen oft nicht verfügbar sind." data-en="We source vehicles from exclusive local fleets. Access to premium Teslas that aren't available at standard agencies.">Wir beziehen Fahrzeuge aus exklusiven lokalen Flotten. Zugang zu Premium-Teslas, die bei Standard-Agenturen oft nicht verfügbar sind.</p>
+                    <i class="fas fa-user-check"></i>
+                    <h3 data-de="Geprüfte Partner" data-en="Vetted Partners">Geprüfte Partner</h3>
+                    <p data-de="Jeder unserer Mietpartner wird sorgfältig ausgewählt und geprüft. Nur die besten lokalen Tesla-Besitzer mit erstklassigen Fahrzeugen und perfekten Bewertungen." data-en="Every rental partner is carefully selected and vetted. Only the best local Tesla owners with top-tier vehicles and perfect ratings.">Jeder unserer Mietpartner wird sorgfältig ausgewählt und geprüft. Nur die besten lokalen Tesla-Besitzer mit erstklassigen Fahrzeugen und perfekten Bewertungen.</p>
                 </div>
                 <div class="agency-card">
                     <i class="fas fa-mobile-alt"></i>
-                    <h3 data-de="Die Technologie" data-en="The Technology">Die Technologie</h3>
-                    <p data-de="Unser Vorteil ist Software. Jeder Kunde erhält Zugang zu unserer KI-basierten Routing-App für perfekte Ladestopps." data-en="Our advantage is software. Every customer gets access to our AI-based routing app for perfect charging stops.">Unser Vorteil ist Software. Jeder Kunde erhält Zugang zu unserer KI-basierten Routing-App für perfekte Ladestopps.</p>
+                    <h3 data-de="KI-Routenplaner" data-en="AI Route Planner">KI-Routenplaner</h3>
+                    <p data-de="Unser Vorteil ist Software. Jeder Kunde erhält Zugang zu unserer KI-basierten Routing-App für perfekte Ladestopps und optimale Reiserouten." data-en="Our advantage is software. Every customer gets access to our AI-based routing app for perfect charging stops and optimal travel routes.">Unser Vorteil ist Software. Jeder Kunde erhält Zugang zu unserer KI-basierten Routing-App für perfekte Ladestopps und optimale Reiserouten.</p>
                 </div>
                 <div class="agency-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3 data-de="Die Sicherheit" data-en="The Security">Die Sicherheit</h3>
-                    <p data-de="Persönlicher Support, klare Versicherungsbedingungen und Planungshilfe. Wir kümmern uns um die Logistik, damit Sie fahren können." data-en="Personal support, clear insurance terms and planning assistance. We handle the logistics so you can drive.">Persönlicher Support, klare Versicherungsbedingungen und Planungshilfe. Wir kümmern uns um die Logistik, damit Sie fahren können.</p>
+                    <i class="fas fa-headset"></i>
+                    <h3 data-de="Persönlicher Service" data-en="Personal Service">Persönlicher Service</h3>
+                    <p data-de="24/7 Support auf Deutsch und Englisch. Wir begleiten Sie von der Buchung bis zur Rückgabe – Ihr persönlicher Concierge für den perfekten Roadtrip." data-en="24/7 support in German and English. We accompany you from booking to return – your personal concierge for the perfect road trip.">24/7 Support auf Deutsch und Englisch. Wir begleiten Sie von der Buchung bis zur Rückgabe – Ihr persönlicher Concierge für den perfekten Roadtrip.</p>
                 </div>
             </div>
         </div>
@@ -4561,7 +4621,7 @@
                     </div>
                     
                     <div class="card-img-wrap">
-                        <img src="teslamodely_flipcard1.jpg" alt="Tesla Model Y Camper mit Dachzelt - Elektroauto Camping USA Roadtrip" class="card-img" loading="lazy" width="400" height="250">
+                        <img src="teslamodely_flipcard.jpg" alt="Tesla Model Y Camper mit Dachzelt - Elektroauto Camping USA Roadtrip" class="card-img" loading="lazy" width="400" height="250">
                     </div>
                     
                     <div class="card-identity">
@@ -4576,7 +4636,7 @@
                             <div class="stat-bar-wrap">
                                 <div class="stat-bar" style="width: 82%"></div>
                             </div>
-                            <span class="stat-value">330 mi</span>
+                            <span class="stat-value" data-de="531 km" data-en="330 mi">330 mi</span>
                         </div>
                         <div class="stat-row">
                             <span class="stat-label"><i class="fas fa-tachometer-alt"></i> 0-60</span>
@@ -4597,7 +4657,7 @@
                             <div class="stat-bar-wrap">
                                 <div class="stat-bar" style="width: 85%"></div>
                             </div>
-                            <span class="stat-value">68 cu ft</span>
+                            <span class="stat-value" data-de="1.925 L" data-en="68 cu ft">68 cu ft</span>
                         </div>
                     </div>
                     
@@ -4650,7 +4710,7 @@
                     </div>
                     
                     <div class="card-img-wrap">
-                        <img src="cybertruck_flipcard2.jpg" alt="Tesla Cybertruck Off-Grid mit Starlink und Campingausrüstung für Abenteuer Roadtrips" class="card-img" loading="lazy" width="400" height="250">
+                        <img src="cybertruck_flipcard.jpg" alt="Tesla Cybertruck Off-Grid mit Starlink und Campingausrüstung für Abenteuer Roadtrips" class="card-img" loading="lazy" width="400" height="250">
                     </div>
                     
                     <div class="card-identity">
@@ -4665,7 +4725,7 @@
                             <div class="stat-bar-wrap">
                                 <div class="stat-bar" style="width: 85%"></div>
                             </div>
-                            <span class="stat-value">340 mi</span>
+                            <span class="stat-value" data-de="547 km" data-en="340 mi">340 mi</span>
                         </div>
                         <div class="stat-row">
                             <span class="stat-label"><i class="fas fa-tachometer-alt"></i> 0-60</span>
@@ -4686,7 +4746,7 @@
                             <div class="stat-bar-wrap">
                                 <div class="stat-bar" style="width: 95%"></div>
                             </div>
-                            <span class="stat-value">100 cu ft</span>
+                            <span class="stat-value" data-de="2.832 L" data-en="100 cu ft">100 cu ft</span>
                         </div>
                     </div>
                     
@@ -4754,7 +4814,7 @@
                             <div class="stat-bar-wrap">
                                 <div class="stat-bar" style="width: 82%"></div>
                             </div>
-                            <span class="stat-value">330 mi</span>
+                            <span class="stat-value" data-de="531 km" data-en="330 mi">330 mi</span>
                         </div>
                         <div class="stat-row">
                             <span class="stat-label"><i class="fas fa-tachometer-alt"></i> 0-60</span>
@@ -4775,7 +4835,7 @@
                             <div class="stat-bar-wrap">
                                 <div class="stat-bar" style="width: 75%"></div>
                             </div>
-                            <span class="stat-value">68 cu ft</span>
+                            <span class="stat-value" data-de="1.925 L" data-en="68 cu ft">68 cu ft</span>
                         </div>
                     </div>
 
@@ -5159,23 +5219,23 @@
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <p class="testimonial-quote">"Wir sind große Fans von Nachhaltigkeit. Dieses E-Auto hat unseren Roadtrip unglaublich erschwinglich und unkompliziert gemacht!"</p>
-                    <div class="testimonial-author">
-                        <div class="avatar-wrapper"><img src="tesla_red_client.jpg" class="avatar-img" alt="Remo M. Kundenbewertung Tesla Model Y Camping USA" loading="lazy" width="60" height="60"></div>
+                    <div class="avatar-wrapper"><img src="tesla_red_client.jpg" class="avatar-img" alt="Remo M. Kundenbewertung Tesla Model Y Camping USA" loading="lazy"></div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-quote">"Wir sind große Fans von Nachhaltigkeit. Dieses E-Auto hat unseren Roadtrip unglaublich erschwinglich und unkompliziert gemacht!"</p>
                         <div class="author-info"><h4>Remo M.</h4><p>Schweiz • Tesla Model Y</p></div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <p class="testimonial-quote">"Amerika mit dem Cybertruck zu bereisen war ein einzigartiges Abenteuer. Wir fühlten uns bereit für jedes Terrain!"</p>
-                    <div class="testimonial-author">
-                        <div class="avatar-wrapper"><img src="cybertruckreview.jpg" class="avatar-img" alt="Katja L. Kundenbewertung Tesla Cybertruck Camping" loading="lazy" width="60" height="60"></div>
+                    <div class="avatar-wrapper"><img src="cybertruckreview.jpg" class="avatar-img" alt="Katja L. Kundenbewertung Tesla Cybertruck Camping" loading="lazy"></div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-quote">"Amerika mit dem Cybertruck zu bereisen war ein einzigartiges Abenteuer. Wir fühlten uns bereit für jedes Terrain!"</p>
                         <div class="author-info"><h4>Katja L.</h4><p>Deutschland • Tesla Cybertruck</p></div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <p class="testimonial-quote">"Fantastische Reise entlang des Pacific Coast Highway! Der Tesla war perfekt für unser Abenteuer. Sehr empfehlenswert!"</p>
-                    <div class="testimonial-author">
-                        <div class="avatar-wrapper"><img src="anna_testamony.jpg" class="avatar-img" alt="Anna S. Kundenbewertung Tesla Model Y USA Roadtrip" loading="lazy" width="60" height="60"></div>
+                    <div class="avatar-wrapper"><img src="anna_testamony.jpg" class="avatar-img" alt="Anna S. Kundenbewertung Tesla Model Y USA Roadtrip" loading="lazy"></div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-quote">"Fantastische Reise entlang des Pacific Coast Highway! Der Tesla war perfekt für unser Abenteuer. Sehr empfehlenswert!"</p>
                         <div class="author-info"><h4>Anna S.</h4><p>Dänemark • Tesla Model Y</p></div>
                     </div>
                 </div>
@@ -5188,38 +5248,37 @@
         <div class="container">
             <div class="sec-head" style="margin-bottom: 2.5rem;">
                 <h2 class="sec-title" data-de="Die Gründerin" data-en="Meet the Founder">Die Gründerin</h2>
-                <p class="sec-sub" style="font-size: 1.1rem; color: #64748b;" data-de="Anja Gutierrez | Von der Heimat zur Weite" data-en="Anja Gutierrez | From Home to the Horizon">Anja Gutierrez | Von der Heimat zur Weite</p>
+                <p class="sec-sub" style="font-size: 1.1rem; color: #64748b;" data-de="Anja Gutierrez | Wo Leidenschaft auf Abenteuer trifft" data-en="Anja Gutierrez | Where Passion Meets Adventure">Anja Gutierrez | Wo Leidenschaft auf Abenteuer trifft</p>
             </div>
             
             <div class="founder-magazine">
-                
-                <!-- Top Row: Photo + Der Aufbruch -->
-                <div class="founder-top-row">
-                    <div class="founder-photo">
-                        <img src="anja-founder.jpg" alt="Anja Gutierrez - Gründerin Abenteuer Mieten Amerika Tesla Camping Vermietung" loading="lazy" width="400" height="500">
-                    </div>
-                    
+
+                <!-- Left Column: Photo -->
+                <div class="founder-photo">
+                    <img src="anja-founder.jpg" alt="Anja Gutierrez - Gründerin Abenteuer Mieten Amerika Tesla Camping Vermietung" loading="lazy" width="400" height="500">
+                </div>
+
+                <!-- Right Column: All Cards -->
+                <div class="founder-cards-column">
                     <div class="founder-card">
                         <div class="founder-card-label" data-de="Der Aufbruch" data-en="The Departure">Der Aufbruch</div>
                         <p data-de="„Ich komme aus einer Welt, in der Grenzen einst sehr real waren – aufgewachsen in einem kleinen Dorf in Ostdeutschland. Doch mein Blick ging immer zum Horizont. Mit 18 Jahren tauschte ich die bekannte Stille der Heimat gegen die pulsierende Energie von Los Angeles. Ich wollte nicht nur lesen, wie die Welt aussieht. Ich wollte sie spüren."" data-en="&quot;I come from a world where borders were once very real—raised in a small village in East Germany. But my gaze was always on the horizon. At 18, I traded the familiar silence of home for the pulsing energy of Los Angeles. I didn't just want to read about what the world looked like. I wanted to feel it.&quot;">„Ich komme aus einer Welt, in der Grenzen einst sehr real waren – aufgewachsen in einem kleinen Dorf in Ostdeutschland. Doch mein Blick ging immer zum Horizont. Mit 18 Jahren tauschte ich die bekannte Stille der Heimat gegen die pulsierende Energie von Los Angeles. Ich wollte nicht nur lesen, wie die Welt aussieht. Ich wollte sie spüren."</p>
                     </div>
-                </div>
-                
-                <!-- Bottom Row: Das Versprechen + Dein Kompass -->
-                <div class="founder-bottom-row">
-                    <div class="founder-card blue">
-                        <div class="founder-card-label" data-de="Das Versprechen" data-en="The Promise">Das Versprechen</div>
-                        <p data-de="„Das Leben verläuft selten in geraden Linien. Als ich mich allein für die Zukunft meines Sohnes verantwortlich sah, traf ich eine Entscheidung. Ich gab ihm ein Versprechen: ‚Wir werden nicht nur zuschauen. Wir werden die Welt sehen.' Wir machten die Straße zu unserem Zuhause. Tausende Meilen – von den roten Wüsten Utahs bis zu den Nebelwäldern der Pazifikküste – lehrten uns, dass das Unbekannte nichts ist, wovor man Angst haben muss."" data-en="&quot;Life rarely moves in straight lines. When I found myself solely responsible for my son's future, I made a choice. I gave him a promise: 'We won't just watch. We will see the world.' We made the road our home. Thousands of miles—from the red deserts of Utah to the misty forests of the Pacific Coast—taught us that the unknown is nothing to fear.&quot;">„Das Leben verläuft selten in geraden Linien. Als ich mich allein für die Zukunft meines Sohnes verantwortlich sah, traf ich eine Entscheidung. Ich gab ihm ein Versprechen: ‚Wir werden nicht nur zuschauen. Wir werden die Welt sehen.' Wir machten die Straße zu unserem Zuhause. Tausende Meilen – von den roten Wüsten Utahs bis zu den Nebelwäldern der Pazifikküste – lehrten uns, dass das Unbekannte nichts ist, wovor man Angst haben muss."</p>
+
+                    <div class="founder-cards-row">
+                        <div class="founder-card blue">
+                            <div class="founder-card-label" data-de="Das Versprechen" data-en="The Promise">Das Versprechen</div>
+                            <p data-de="„Das Leben verläuft selten in geraden Linien. Als ich mich allein für die Zukunft meines Sohnes verantwortlich sah, traf ich eine Entscheidung. Ich gab ihm ein Versprechen: ‚Wir werden nicht nur zuschauen. Wir werden die Welt sehen.' Wir machten die Straße zu unserem Zuhause. Tausende Meilen – von den roten Wüsten Utahs bis zu den Nebelwäldern der Pazifikküste – lehrten uns, dass das Unbekannte nichts ist, wovor man Angst haben muss."" data-en="&quot;Life rarely moves in straight lines. When I found myself solely responsible for my son's future, I made a choice. I gave him a promise: 'We won't just watch. We will see the world.' We made the road our home. Thousands of miles—from the red deserts of Utah to the misty forests of the Pacific Coast—taught us that the unknown is nothing to fear.&quot;">„Das Leben verläuft selten in geraden Linien. Als ich mich allein für die Zukunft meines Sohnes verantwortlich sah, traf ich eine Entscheidung. Ich gab ihm ein Versprechen: ‚Wir werden nicht nur zuschauen. Wir werden die Welt sehen.' Wir machten die Straße zu unserem Zuhause. Tausende Meilen – von den roten Wüsten Utahs bis zu den Nebelwäldern der Pazifikküste – lehrten uns, dass das Unbekannte nichts ist, wovor man Angst haben muss."</p>
+                        </div>
+
+                        <div class="founder-card green">
+                            <div class="founder-card-label" data-de="Dein Kompass" data-en="Your Compass">Dein Kompass</div>
+                            <p data-de="„Abenteuer Mieten Amerika ist die Essenz dieser Jahre. Ich habe die Fehler bereits gemacht, damit du sie nicht machen musst. Ich habe die magischen Orte gefunden, damit du nicht suchen musst. Dies ist mehr als eine Autovermietung. Es ist meine Einladung an dich, deine eigene Geschichte zu schreiben – mit der Gewissheit und Sicherheit einer Freundin, die den Weg bereits kennt."" data-en="&quot;Abenteuer Mieten Amerika is the essence of those years. I've already made the mistakes so you don't have to. I've found the magical places so you don't have to search. This is more than a car rental. It's my invitation to you to write your own story—with the certainty and safety of a friend who already knows the way.&quot;">„Abenteuer Mieten Amerika ist die Essenz dieser Jahre. Ich habe die Fehler bereits gemacht, damit du sie nicht machen musst. Ich habe die magischen Orte gefunden, damit du nicht suchen musst. Dies ist mehr als eine Autovermietung. Es ist meine Einladung an dich, deine eigene Geschichte zu schreiben – mit der Gewissheit und Sicherheit einer Freundin, die den Weg bereits kennt."</p>
+                        </div>
                     </div>
-                    
-                    <div class="founder-card green">
-                        <div class="founder-card-label" data-de="Dein Kompass" data-en="Your Compass">Dein Kompass</div>
-                        <p data-de="„Abenteuer Mieten Amerika ist die Essenz dieser Jahre. Ich habe die Fehler bereits gemacht, damit du sie nicht machen musst. Ich habe die magischen Orte gefunden, damit du nicht suchen musst. Dies ist mehr als eine Autovermietung. Es ist meine Einladung an dich, deine eigene Geschichte zu schreiben – mit der Gewissheit und Sicherheit einer Freundin, die den Weg bereits kennt."" data-en="&quot;Abenteuer Mieten Amerika is the essence of those years. I've already made the mistakes so you don't have to. I've found the magical places so you don't have to search. This is more than a car rental. It's my invitation to you to write your own story—with the certainty and safety of a friend who already knows the way.&quot;">„Abenteuer Mieten Amerika ist die Essenz dieser Jahre. Ich habe die Fehler bereits gemacht, damit du sie nicht machen musst. Ich habe die magischen Orte gefunden, damit du nicht suchen musst. Dies ist mehr als eine Autovermietung. Es ist meine Einladung an dich, deine eigene Geschichte zu schreiben – mit der Gewissheit und Sicherheit einer Freundin, die den Weg bereits kennt."</p>
-                    </div>
+
+                    <div class="founder-signature">— Anja</div>
                 </div>
-                
-                <!-- Signature -->
-                <div class="founder-signature">— Anja</div>
             </div>
         </div>
     </section>
@@ -5307,7 +5366,7 @@
 
                 <div class="footer-section">
                     <h3 data-de="Adresse" data-en="Address">Adresse</h3>
-                    <p>Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika<br>6445 S Tenaya Way, Suite 110<br>Las Vegas, NV 89113<br>USA</p>
+                    <p>6445 S Tenaya Way, Suite 110<br>Las Vegas, NV 89113<br>USA</p>
                 </div>
 
                 <div class="footer-section">

@@ -34,6 +34,8 @@ Last updated: January 20, 2026
 - **Forwards to:** anja687gutierrez@gmail.com
 - **Cost:** FREE (included with domain registration)
 
+Note: Gmail "Send As" requires paid SMTP service. Currently using forwarding only.
+
 ---
 
 ## Analytics
@@ -41,10 +43,40 @@ Last updated: January 20, 2026
 | Service | ID | Status |
 |---------|-----|--------|
 | **Google Analytics 4** | G-7LCWYNKB6M | Active |
+| **Google Ads** | AW-XXXXXXXXXX | Not configured |
+| **Meta Pixel** | XXXXXXXXXXXXXXXX | Not configured |
+| **Microsoft Clarity** | XXXXXXXXXX | Not configured |
+
+See `ANALYTICS_SETUP_GUIDE.md` for setup instructions.
+
+---
+
+## File Structure
+
+```
+LIVE/
+├── index.html              ← Main website (single page)
+├── images-config.js        ← Image configuration (easy updates)
+├── tesla.mp4               ← Hero video
+├── sitemap.xml             ← SEO sitemap
+├── robots.txt              ← Search engine instructions
+├── flaviconicon.png        ← Favicon
+├── *.jpg                   ← All website images
+├── *.kml                   ← Route download files
+│
+├── SITE-REFERENCE.md       ← THIS FILE
+├── HOW-TO-UPDATE-IMAGES.md ← Image update guide
+├── ANALYTICS_SETUP_GUIDE.md← Analytics setup guide
+├── CLOUDFLARE-WORKER-SETUP.md
+│
+└── _archive/               ← Old versions (backup)
+```
 
 ---
 
 ## KML Route Files
+
+These files are downloadable from the Routes section:
 
 | File | Route |
 |------|-------|
@@ -52,10 +84,69 @@ Last updated: January 20, 2026
 | `Route_66_-_Part_1.kml` | Route 66 Part 1 |
 | `Copy_of_Route_66_-_Part_2.kml` | Route 66 Part 2 |
 
+Source location: `/Business/Apps/PDF Guide/Routes/`
+
 ---
 
-## Deployment Notes
+## Forms
 
-- Video file (tesla.mp4) excluded from GitHub due to 100MB limit
-- Upload video separately to Cloudflare
-- Domain spelling: abenteuer**mieten**amerika (with 'e')
+All lead capture forms submit to Google Sheets via Apps Script:
+- Hero form
+- Popup form (exit intent)
+- Sticky bar form
+
+Endpoint: `https://script.google.com/macros/s/AKfycbzF4t-juXYphl5JjFjzurt9ARcaYnyOHYo4vCVUgmb99l96p-seSdcQJTZKaP5d92icyg/exec`
+
+---
+
+## Legal Pages (Modals in index.html)
+
+- **AGB & Mietbedingungen** - 11 sections including:
+  - Section 1: Vermittlungsplattform (Booking Platform)
+  - Section 8: Concierge-Service
+  - Section 9: Klausy App - KI-Routenplaner
+  - Section 10: Allgemeine Reiserisiken
+  - Section 11: Haftungsbeschränkung
+- **Datenschutz** - Privacy policy (GDPR compliant)
+- **Impressum** - Legal imprint
+- **Cookie Settings** - Cookie consent management
+
+---
+
+## Deployment Checklist
+
+When uploading to Cloudflare:
+
+- [ ] index.html
+- [ ] images-config.js
+- [ ] tesla.mp4
+- [ ] All .jpg images
+- [ ] All .kml files
+- [ ] sitemap.xml
+- [ ] robots.txt
+- [ ] flaviconicon.png
+
+---
+
+## Quick Reference Guides
+
+| Task | Guide |
+|------|-------|
+| Update images | `HOW-TO-UPDATE-IMAGES.md` |
+| Set up analytics | `ANALYTICS_SETUP_GUIDE.md` |
+| Cloudflare worker | `CLOUDFLARE-WORKER-SETUP.md` |
+
+---
+
+## DBA Documentation
+
+Full business documentation at:
+`/Users/anjacarrillo/Documents/DBA/Abenteuer Mieten Amerika/`
+
+Includes checklists for:
+- Licenses & Permits
+- Legal Documents
+- Insurance
+- Payments & Taxes
+- Contracts & Agreements
+- Marketing

@@ -57,9 +57,9 @@
     <meta name="twitter:image:alt" content="Tesla Model Y mit Dachzelt vor dem Grand Canyon">
     
     <!-- Favicon (v=2 forces cache refresh) -->
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=2">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png?v=2">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png?v=3">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=3">
     
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -4101,8 +4101,8 @@
             position: absolute;
             top: 0.5rem;
             right: 0.5rem;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             border: none;
             background: #f1f5f9;
             border-radius: 50%;
@@ -4113,6 +4113,7 @@
             font-size: 0.75rem;
             color: #64748b;
             transition: all 0.2s ease;
+            z-index: 10;
         }
 
         .klausy-close:hover {
@@ -5301,7 +5302,7 @@
             <a href="#home" class="logo-link">
                 <div class="logo-text">
                     <span class="logo-line-1">Abenteuer Mieten</span>
-                    <span class="logo-line-2">Amerika</span>
+                    <span class="logo-line-2">Amerika<sup style="font-size: 0.45em; vertical-align: super; font-weight: 400;">&trade;</sup></span>
                 </div>
             </a>
             <div class="nav-links">
@@ -5471,10 +5472,9 @@
                     
                     <div class="input-group">
                         <label data-de="Abholung" data-en="Pickup">Abholung</label>
-                        <select class="input-field">
-                            <option>Los Angeles (LAX)</option>
-                            <option>Las Vegas (LAS)</option>
-                            <option>San Francisco (SFO)</option>
+                        <select class="input-field" id="pickupSelect">
+                            <option value="Los Angeles, CA">Los Angeles, CA</option>
+                            <option value="Las Vegas, NV">Las Vegas, NV</option>
                         </select>
                     </div>
 
@@ -5491,15 +5491,17 @@
                     <div class="input-group" style="flex: 1.5;">
                         <label data-de="Fahrzeug Wählen" data-en="Choose Vehicle">Fahrzeug Wählen</label>
                         <select class="input-field" id="carSelect">
-                            <option data-price="149">Model Y (Camping Suite)</option>
-                            <option data-price="299">Cybertruck (Off-Grid)</option>
-                            <option data-price="119">Model Y (Budget)</option>
+                            <option data-price="149" data-type="model_y_camping">Model Y (Camping Suite)</option>
+                            <option data-price="299" data-type="cybertruck">Cybertruck (Off-Grid)</option>
+                            <option data-price="119" data-type="model_y_budget">Model Y (Budget)</option>
                         </select>
                     </div>
 
                     <button class="check-btn" data-de="Verfügbarkeit Prüfen" data-en="Check Availability">Verfügbarkeit Prüfen</button>
                 </form>
-                
+
+                <p style="text-align: center; font-size: 0.8rem; color: #9ca3af; margin-top: 0.75rem;"><span data-de="Neue Abholorte werden laufend hinzugefügt." data-en="New pickup locations added regularly.">Neue Abholorte werden laufend hinzugefügt.</span> <a href="https://wa.me/13106006624" target="_blank" style="color: #f97316; text-decoration: none;"><span data-de="Schreib uns" data-en="Text us">Schreib uns</span></a> <span data-de="für individuelle Abholung." data-en="for custom pickup.">für individuelle Abholung.</span></p>
+
                 <!-- Real-time Estimate Display -->
                 <div class="booking-estimate" id="bookingEstimate">
                     <div class="estimate-item">
@@ -6298,10 +6300,6 @@
                     <p><i class="fas fa-clock"></i> <span data-de="Mo-So: 9:00 - 18:00 Uhr" data-en="Mon-Sun: 9:00 AM - 6:00 PM">Mo-So: 9:00 - 18:00 Uhr</span></p>
                 </div>
 
-                <div class="footer-section">
-                    <h3 data-de="Adresse" data-en="Address">Adresse</h3>
-                    <p>6445 S Tenaya Way, Suite 110<br>Las Vegas, NV 89113<br>USA</p>
-                </div>
 
                 <div class="footer-section">
                     <h3 data-de="Services" data-en="Services">Services</h3>
@@ -6331,7 +6329,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p><span data-de="© 2026 Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika. Alle Rechte vorbehalten." data-en="© 2026 Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika. All rights reserved.">© 2026 Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika. Alle Rechte vorbehalten.</span> | Made with <i class="fas fa-heart"></i> for adventurers</p>
+                <p><span data-de="© 2026 Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika™. Alle Rechte vorbehalten." data-en="© 2026 Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika™. All rights reserved.">© 2026 Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika™. Alle Rechte vorbehalten.</span> | Made with <i class="fas fa-heart"></i> for adventurers</p>
             </div>
         </div>
     </footer>
@@ -6681,7 +6679,7 @@
             if (!form) return; 
 
             // 2. Find inputs INSIDE that form specifically
-            const locationSelect = form.querySelector('select');
+            const locationSelect = document.getElementById('pickupSelect');
             const carSelect = document.getElementById('carSelect');
             const startDateInput = document.getElementById('startDate');
             const returnDateInput = document.getElementById('returnDate');
@@ -6749,67 +6747,103 @@
                 carSelect.addEventListener('change', calculateEstimate);
             }
 
-            // 6. Handle Click - Enhanced WhatsApp Message with Markdown
+            // 6. Handle Click - Show email modal for checkout
+            const CHECKOUT_API = 'http://localhost:3000/api/public/checkout';
+            const BOOKING_SOURCE = 'abenteuer';
+            const BOOKING_LOCALE = 'de';
+
+            const emailModal = document.getElementById('emailModal');
+            const emailInput = document.getElementById('emailModalInput');
+            const emailSubmit = document.getElementById('emailModalSubmit');
+            const emailClose = document.getElementById('emailModalClose');
+            const emailError = document.getElementById('emailModalError');
+            const emailSummary = document.getElementById('emailModalSummary');
+
+            // Store form data for checkout submission
+            let pendingCheckout = null;
+
             if(checkBtn) {
                 checkBtn.addEventListener('click', function(e) {
-                    e.preventDefault(); 
+                    e.preventDefault();
 
-                    // Basic Validation
                     if(!startDateInput.value || !returnDateInput.value) {
-                        alert("Please select both a start and return date.");
+                        alert("Bitte wählen Sie ein Start- und Rückgabedatum.");
                         return;
                     }
 
-                    // Format Data
+                    const selectedOption = carSelect.options[carSelect.selectedIndex];
                     const pickup = locationSelect.value;
                     const start = startDateInput.value;
                     const end = returnDateInput.value;
-                    const car = carSelect.value;
-                    
-                    // Calculate days for message
-                    const startDate = new Date(start);
-                    const returnDate = new Date(end);
-                    const days = Math.max(1, Math.ceil((returnDate - startDate) / (1000 * 60 * 60 * 24)));
-                    
-                    // Get price info
-                    const selectedOption = carSelect.options[carSelect.selectedIndex];
+                    const days = Math.max(1, Math.ceil((new Date(end) - new Date(start)) / (1000 * 60 * 60 * 24)));
                     const pricePerDay = parseInt(selectedOption.getAttribute('data-price')) || 150;
                     const totalPrice = days * pricePerDay;
-                    
-                    // Format dates nicely
-                    const formatDate = (dateStr) => {
-                        const d = new Date(dateStr);
-                        return d.toLocaleDateString('en-US', { 
-                            weekday: 'short', 
-                            month: 'short', 
-                            day: 'numeric', 
-                            year: 'numeric' 
-                        });
+
+                    pendingCheckout = {
+                        vehicleType: selectedOption.getAttribute('data-type'),
+                        pickupDate: start,
+                        dropoffDate: end,
+                        pickupLocation: pickup,
                     };
 
-                    // Construct Message with WhatsApp Markdown (*bold*)
-                    const rawMessage = 
-`*🚗 BOOKING REQUEST*
-━━━━━━━━━━━━━━━━━
+                    emailSummary.innerHTML = `<strong>${carSelect.value}</strong> &middot; ${days} Tag${days > 1 ? 'e' : ''} &middot; $${totalPrice.toLocaleString()} &middot; ${pickup}`;
+                    emailError.style.display = 'none';
+                    emailInput.value = '';
+                    emailModal.style.display = 'flex';
+                    emailInput.focus();
+                });
+            }
 
-*Vehicle:* ${car}
-*Location:* ${pickup}
+            if(emailClose) {
+                emailClose.addEventListener('click', function() {
+                    emailModal.style.display = 'none';
+                });
+            }
+            if(emailModal) {
+                emailModal.addEventListener('click', function(e) {
+                    if (e.target === emailModal) emailModal.style.display = 'none';
+                });
+            }
 
-*📅 Dates:*
-• Start: ${formatDate(start)}
-• Return: ${formatDate(end)}
-• Duration: *${days} day${days > 1 ? 's' : ''}*
+            if(emailSubmit) {
+                emailSubmit.addEventListener('click', async function() {
+                    const email = emailInput.value.trim();
+                    if (!email || !email.includes('@')) {
+                        emailError.textContent = 'Bitte geben Sie eine gültige E-Mail-Adresse ein.';
+                        emailError.style.display = 'block';
+                        return;
+                    }
 
-*💰 Estimate:* ~$${totalPrice.toLocaleString()}
-_(at $${pricePerDay}/day)_
+                    emailSubmit.disabled = true;
+                    emailSubmit.textContent = 'Verarbeitung...';
+                    emailError.style.display = 'none';
 
-━━━━━━━━━━━━━━━━━
-Please confirm availability!`;
+                    try {
+                        const res = await fetch(CHECKOUT_API, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                ...pendingCheckout,
+                                customerEmail: email,
+                                source: BOOKING_SOURCE,
+                                locale: BOOKING_LOCALE,
+                            }),
+                        });
 
-                    // Encode the entire string once
-                    const encodedMessage = encodeURIComponent(rawMessage);
-                    const whatsappUrl = `https://wa.me/13106006624?text=${encodedMessage}`;
-                    window.open(whatsappUrl, '_blank');
+                        const data = await res.json();
+
+                        if (!res.ok) {
+                            throw new Error(data.error || 'Checkout fehlgeschlagen');
+                        }
+
+                        // Redirect to Stripe Checkout
+                        window.location.href = data.checkoutUrl;
+                    } catch (err) {
+                        emailError.textContent = err.message || 'Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.';
+                        emailError.style.display = 'block';
+                        emailSubmit.disabled = false;
+                        emailSubmit.textContent = 'Jetzt Buchen — Sichere Zahlung';
+                    }
                 });
             }
         });
@@ -7293,17 +7327,18 @@ Please confirm availability!`;
                 const action = btn.dataset.action;
                 const target = btn.dataset.target;
 
-                hideMessage();
-
                 switch(action) {
                     case 'scroll':
+                        hideMessage();
                         const el = document.querySelector(target);
                         if (el) el.scrollIntoView({ behavior: 'smooth' });
                         break;
                     case 'whatsapp':
+                        hideMessage();
                         window.open('https://wa.me/13106006624?text=Hallo,%20Klausy%20hat%20mich%20geschickt!', '_blank');
                         break;
                     case 'download':
+                        hideMessage();
                         // PDF download - check if placeholder or real URL
                         if (target && !target.startsWith('#PDF_PLACEHOLDER')) {
                             window.open(target, '_blank');
@@ -7318,6 +7353,8 @@ Please confirm availability!`;
                         // "Maybe Later" - longer cooldown (3 minutes), not permanent
                         hideMessage(180);
                         break;
+                    default:
+                        hideMessage();
                 }
 
                 if (window.gtag) {
@@ -8152,7 +8189,7 @@ Please confirm availability!`;
             'routes': 'routes',
             'testimonials': 'testimonials',
             'contact': 'contact',
-            'booking-bar': 'home',
+            'booking-bar': 'booking-bar',
             'concept': 'fleet',
             'concierge': 'routes',
             'founder': 'testimonials',
@@ -8187,7 +8224,7 @@ Please confirm availability!`;
             desktopNavLinks.forEach(link => {
                 link.classList.remove('active');
                 const href = link.getAttribute('href')?.replace('#', '');
-                if (sectionNavMap[href] === current || href === current) {
+                if (href === current) {
                     link.classList.add('active');
                 }
             });
@@ -8315,6 +8352,22 @@ Please confirm availability!`;
     </nav>
 
     <!-- Old floating CTA removed - using unified FAB instead -->
+
+    <!-- Email Modal for Checkout -->
+    <div id="emailModal" style="display:none; position:fixed; inset:0; z-index:10000; background:rgba(0,0,0,0.6); align-items:center; justify-content:center;">
+        <div style="background:#fff; border-radius:1rem; padding:2rem; max-width:420px; width:90%; position:relative; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+            <button id="emailModalClose" style="position:absolute; top:0.75rem; right:1rem; background:none; border:none; font-size:1.5rem; cursor:pointer; color:#999;">&times;</button>
+            <h3 style="margin:0 0 0.5rem; font-size:1.25rem; color:#1a1a1a;" data-de="Fast geschafft!" data-en="Almost there!">Fast geschafft!</h3>
+            <p style="margin:0 0 1.25rem; color:#666; font-size:0.9rem;" data-de="Geben Sie Ihre E-Mail ein, um zur sicheren Zahlung zu gelangen." data-en="Enter your email to proceed to secure checkout.">Geben Sie Ihre E-Mail ein, um zur sicheren Zahlung zu gelangen.</p>
+            <div id="emailModalSummary" style="background:#f9f9f9; border-radius:0.5rem; padding:0.75rem 1rem; margin-bottom:1.25rem; font-size:0.85rem; color:#444;"></div>
+            <input type="email" id="emailModalInput" placeholder="ihre@email.com" style="width:100%; padding:0.75rem 1rem; border:2px solid #ddd; border-radius:0.5rem; font-size:1rem; box-sizing:border-box; margin-bottom:0.75rem;" />
+            <button id="emailModalSubmit" style="width:100%; padding:0.75rem; background:#f97316; color:#fff; border:none; border-radius:0.5rem; font-size:1rem; font-weight:600; cursor:pointer;" data-de="Jetzt Buchen — Sichere Zahlung" data-en="Book Now — Secure Checkout">Jetzt Buchen — Sichere Zahlung</button>
+            <div id="emailModalError" style="color:#dc2626; font-size:0.85rem; margin-top:0.5rem; display:none;"></div>
+            <p style="text-align:center; margin:1rem 0 0; font-size:0.8rem; color:#999;">
+                <span data-de="Lieber chatten?" data-en="Prefer to chat?">Lieber chatten?</span> <a href="https://wa.me/13106006624?text=Hallo,%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Buchung!" target="_blank" style="color:#25d366;">WhatsApp</a>
+            </p>
+        </div>
+    </div>
 
 </body>
 </html>

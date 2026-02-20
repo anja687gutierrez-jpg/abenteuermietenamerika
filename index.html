@@ -683,7 +683,68 @@
             font-weight: 500;
             color: #64748b;
         }
-        
+        .pokemon-card .card-price .price-prefix {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #64748b;
+        }
+        .pokemon-card .card-identity {
+            position: relative;
+        }
+        .price-info-btn {
+            background: none;
+            border: 1px solid #cbd5e1;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #94a3b8;
+            font-size: 0.6rem;
+            font-weight: 700;
+            transition: all 0.2s;
+            position: relative;
+            vertical-align: middle;
+            margin-left: 6px;
+        }
+        .price-info-btn:hover {
+            color: #475569;
+            border-color: #94a3b8;
+        }
+        .price-tooltip {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 8px);
+            right: -8px;
+            width: 260px;
+            background: #1e293b;
+            color: #e2e8f0;
+            font-size: 0.65rem;
+            font-weight: 400;
+            line-height: 1.5;
+            padding: 0.75rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 50;
+            text-align: left;
+        }
+        .price-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 14px;
+            width: 10px;
+            height: 10px;
+            background: #1e293b;
+            transform: rotate(45deg);
+        }
+        .price-info-btn:hover .price-tooltip,
+        .price-info-btn:focus .price-tooltip {
+            display: block;
+        }
+
         /* Stats Section */
         .stats-section {
             padding: 1rem 1.25rem;
@@ -743,6 +804,75 @@
             text-align: right;
         }
         
+        /* Stats Info Icon & Disclaimer */
+        .stats-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1.25rem 0;
+        }
+        .stats-info-btn {
+            background: none;
+            border: 1px solid #cbd5e1;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #94a3b8;
+            font-size: 0.65rem;
+            font-weight: 700;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .stats-info-btn:hover {
+            color: #475569;
+            border-color: #94a3b8;
+        }
+        .stats-tooltip {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 8px);
+            right: -8px;
+            width: 240px;
+            background: #1e293b;
+            color: #e2e8f0;
+            font-size: 0.65rem;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+            line-height: 1.5;
+            padding: 0.75rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 50;
+            text-align: left;
+        }
+        .stats-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 14px;
+            width: 10px;
+            height: 10px;
+            background: #1e293b;
+            transform: rotate(45deg);
+        }
+        .stats-info-btn:hover .stats-tooltip,
+        .stats-info-btn:focus .stats-tooltip {
+            display: block;
+        }
+        .stats-disclaimer {
+            font-size: 0.55rem;
+            color: #94a3b8;
+            text-align: center;
+            padding: 0.25rem 1.25rem 0.5rem;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
         /* Quick Specs */
         .quick-specs {
             display: flex;
@@ -5491,7 +5621,7 @@
                     <div class="input-group" style="flex: 1.5;">
                         <label data-de="Fahrzeug Wählen" data-en="Choose Vehicle">Fahrzeug Wählen</label>
                         <select class="input-field" id="carSelect">
-                            <option data-price="149" data-type="model_y_camping">Model Y (Camping Suite)</option>
+                            <option data-price="216" data-type="model_y_camping">Model Y (Camping Suite)</option>
                             <option data-price="299" data-type="cybertruck">Cybertruck (Off-Grid)</option>
                             <option data-price="119" data-type="model_y_budget">Model Y (Budget)</option>
                         </select>
@@ -5512,7 +5642,7 @@
                         <span class="estimate-label" data-de="Geschätzter Preis" data-en="Estimated Price">Geschätzter Preis</span>
                         <span class="estimate-value highlight" id="totalCost">—</span>
                     </div>
-                    <span class="estimate-note" data-de="Endpreis bei Buchung bestätigt" data-en="Final price confirmed at booking">Endpreis bei Buchung bestätigt</span>
+                    <span class="estimate-note" data-de="Startpreis-Schätzung. Endpreis wird auf unserer Buchungsplattform bestätigt. Zzgl. $139 einmalige Servicegebühr." data-en="Starting price estimate. Final price confirmed on our booking platform. Plus $139 one-time service fee.">Startpreis-Schätzung. Endpreis wird auf unserer Buchungsplattform bestätigt. Zzgl. $139 einmalige Servicegebühr.</span>
                 </div>
             </div> 
         </div>
@@ -5561,17 +5691,23 @@
                     
                     <div class="card-identity">
                         <h3 class="card-name">Tesla Model Y Camping-Paket</h3>
-                        <div class="card-price">$149<span>/day</span></div>
+                        <div class="card-price"><span class="price-prefix" data-de="ab " data-en="from ">ab </span>$216<span data-de="/Tag" data-en="/day">/Tag</span><button class="price-info-btn" aria-label="Price info">i<div class="price-tooltip" data-de="Startpreis pro Tag. Der Endpreis variiert je nach Saison und wird vor der Buchung auf unserer Plattform bestätigt. Zusätzlich fällt eine einmalige Servicegebühr von $139 an (Fahrzeugvorbereitung, Camping-Ausrüstung, Reinigung &amp; Iconic Pathways App-Zugang)." data-en="Starting price per day. Final price varies by season and is confirmed on our platform before booking. A one-time $139 service fee applies (vehicle prep, camping equipment, cleaning &amp; Iconic Pathways app access).">Startpreis pro Tag. Der Endpreis variiert je nach Saison und wird vor der Buchung auf unserer Plattform bestätigt. Zusätzlich fällt eine einmalige Servicegebühr von $139 an (Fahrzeugvorbereitung, Camping-Ausrüstung, Reinigung &amp; Iconic Pathways App-Zugang).</div></button></div>
                     </div>
-                    
+
                     <!-- Stats Section -->
+                    <div class="stats-header">
+                        <span></span>
+                        <button class="stats-info-btn" aria-label="Info">i
+                            <div class="stats-tooltip" data-de="<b>Reichweite:</b> Geschatzte Reichweite pro Ladung. Kann je nach Wetter, Gepack und Fahrweise variieren. Dachzelt reduziert die Reichweite.<br><b>0-60:</b> Beschleunigung von 0 auf 100 km/h.<br><b>Laden:</b> Maximale Supercharger-Ladegeschwindigkeit.<br><b>Stauraum:</b> Gesamtes Ladevolumen des Fahrzeugs." data-en="<b>Range:</b> Estimated range per charge. May vary based on weather, cargo, and driving style. Rooftop tent reduces range.<br><b>0-60:</b> Acceleration from 0 to 60 mph.<br><b>Charging:</b> Maximum Supercharger speed.<br><b>Storage:</b> Total cargo volume."><b>Reichweite:</b> Geschatzte Reichweite pro Ladung. Kann je nach Wetter, Gepack und Fahrweise variieren. Dachzelt reduziert die Reichweite.<br><b>0-60:</b> Beschleunigung von 0 auf 100 km/h.<br><b>Laden:</b> Maximale Supercharger-Ladegeschwindigkeit.<br><b>Stauraum:</b> Gesamtes Ladevolumen des Fahrzeugs.</div>
+                        </button>
+                    </div>
                     <div class="stats-section">
                         <div class="stat-row">
                             <span class="stat-label"><i class="fas fa-bolt"></i> <span data-de="Reichweite" data-en="Range">Reichweite</span></span>
                             <div class="stat-bar-wrap">
-                                <div class="stat-bar" style="width: 82%"></div>
+                                <div class="stat-bar" style="width: 56%"></div>
                             </div>
-                            <span class="stat-value" data-de="531 km" data-en="330 mi">330 mi</span>
+                            <span class="stat-value" data-de="362 km" data-en="225 mi">225 mi</span>
                         </div>
                         <div class="stat-row">
                             <span class="stat-label"><i class="fas fa-tachometer-alt"></i> 0-60</span>
@@ -5595,7 +5731,8 @@
                             <span class="stat-value" data-de="1.925 L" data-en="68 cu ft">68 cu ft</span>
                         </div>
                     </div>
-                    
+                    <div class="stats-disclaimer" data-de="* Angaben dienen nur zur Veranschaulichung. Tatsachliche Werte konnen abweichen." data-en="* Values shown are for illustration purposes only. Actual performance may vary.">* Angaben dienen nur zur Veranschaulichung. Tatsachliche Werte konnen abweichen.</div>
+
                     <!-- Quick Specs -->
                     <div class="quick-specs">
                         <div class="qs-item"><i class="fas fa-user-friends"></i> <span data-de="5 Sitze" data-en="5 Seats">5 Sitze</span></div>
@@ -5634,7 +5771,7 @@
                         </div>
                     </div>
                     
-                    <button class="rent-btn" data-de="Mehr Erfahren" data-en="Learn More" onclick="AMA_Analytics.trackVehicleView('Tesla Model Y Camping-Paket', 149)">Mehr Erfahren</button>
+                    <button class="rent-btn" data-de="Mehr Erfahren" data-en="Learn More" onclick="AMA_Analytics.trackVehicleView('Tesla Model Y Camping-Paket', 216)">Mehr Erfahren</button>
                 </div>
 
                 <!-- CARD 2: Cybertruck Off-Grid -->
@@ -5650,10 +5787,16 @@
                     
                     <div class="card-identity">
                         <h3 class="card-name">Cybertruck Off-Grid</h3>
-                        <div class="card-price">$299<span>/day</span></div>
+                        <div class="card-price"><span class="price-prefix" data-de="ab " data-en="from ">ab </span>$299<span data-de="/Tag" data-en="/day">/Tag</span><button class="price-info-btn" aria-label="Price info">i<div class="price-tooltip" data-de="Startpreis pro Tag. Der Endpreis variiert je nach Saison und wird vor der Buchung auf unserer Plattform bestätigt. Zusätzlich fällt eine einmalige Servicegebühr von $139 an (Fahrzeugvorbereitung, Camping-Ausrüstung, Reinigung &amp; Iconic Pathways App-Zugang)." data-en="Starting price per day. Final price varies by season and is confirmed on our platform before booking. A one-time $139 service fee applies (vehicle prep, camping equipment, cleaning &amp; Iconic Pathways app access).">Startpreis pro Tag. Der Endpreis variiert je nach Saison und wird vor der Buchung auf unserer Plattform bestätigt. Zusätzlich fällt eine einmalige Servicegebühr von $139 an (Fahrzeugvorbereitung, Camping-Ausrüstung, Reinigung &amp; Iconic Pathways App-Zugang).</div></button></div>
                     </div>
                     
                     <!-- Stats Section -->
+                    <div class="stats-header">
+                        <span></span>
+                        <button class="stats-info-btn" aria-label="Info">i
+                            <div class="stats-tooltip" data-de="<b>Reichweite:</b> Geschatzte Reichweite pro Ladung. Kann je nach Wetter, Gepack und Fahrweise variieren.<br><b>0-60:</b> Beschleunigung von 0 auf 100 km/h.<br><b>Laden:</b> Maximale Supercharger-Ladegeschwindigkeit.<br><b>Stauraum:</b> Gesamtes Ladevolumen des Fahrzeugs." data-en="<b>Range:</b> Estimated range per charge. May vary based on weather, cargo, and driving style.<br><b>0-60:</b> Acceleration from 0 to 60 mph.<br><b>Charging:</b> Maximum Supercharger speed.<br><b>Storage:</b> Total cargo volume."><b>Reichweite:</b> Geschatzte Reichweite pro Ladung. Kann je nach Wetter, Gepack und Fahrweise variieren.<br><b>0-60:</b> Beschleunigung von 0 auf 100 km/h.<br><b>Laden:</b> Maximale Supercharger-Ladegeschwindigkeit.<br><b>Stauraum:</b> Gesamtes Ladevolumen des Fahrzeugs.</div>
+                        </button>
+                    </div>
                     <div class="stats-section">
                         <div class="stat-row">
                             <span class="stat-label"><i class="fas fa-bolt"></i> <span data-de="Reichweite" data-en="Range">Reichweite</span></span>
@@ -5684,7 +5827,8 @@
                             <span class="stat-value" data-de="2.832 L" data-en="100 cu ft">100 cu ft</span>
                         </div>
                     </div>
-                    
+                    <div class="stats-disclaimer" data-de="* Angaben dienen nur zur Veranschaulichung. Tatsächliche Werte können abweichen." data-en="* Values shown are for illustration purposes only. Actual performance may vary.">* Angaben dienen nur zur Veranschaulichung. Tatsächliche Werte können abweichen.</div>
+
                     <!-- Quick Specs -->
                     <div class="quick-specs">
                         <div class="qs-item"><i class="fas fa-user-friends"></i> <span data-de="6 Sitze" data-en="6 Seats">6 Sitze</span></div>
@@ -5739,10 +5883,16 @@
 
                     <div class="card-identity">
                         <h3 class="card-name" data-de="Model Y Budget" data-en="Model Y Budget">Model Y Budget</h3>
-                        <div class="card-price">$119<span>/day</span></div>
+                        <div class="card-price"><span class="price-prefix" data-de="ab " data-en="from ">ab </span>$119<span data-de="/Tag" data-en="/day">/Tag</span><button class="price-info-btn" aria-label="Price info">i<div class="price-tooltip" data-de="Startpreis pro Tag. Der Endpreis variiert je nach Saison und wird vor der Buchung auf unserer Plattform bestätigt. Zusätzlich fällt eine einmalige Servicegebühr von $139 an (Fahrzeugvorbereitung, Camping-Ausrüstung, Reinigung &amp; Iconic Pathways App-Zugang)." data-en="Starting price per day. Final price varies by season and is confirmed on our platform before booking. A one-time $139 service fee applies (vehicle prep, camping equipment, cleaning &amp; Iconic Pathways app access).">Startpreis pro Tag. Der Endpreis variiert je nach Saison und wird vor der Buchung auf unserer Plattform bestätigt. Zusätzlich fällt eine einmalige Servicegebühr von $139 an (Fahrzeugvorbereitung, Camping-Ausrüstung, Reinigung &amp; Iconic Pathways App-Zugang).</div></button></div>
                     </div>
 
                     <!-- Stats Section -->
+                    <div class="stats-header">
+                        <span></span>
+                        <button class="stats-info-btn" aria-label="Info">i
+                            <div class="stats-tooltip" data-de="<b>Reichweite:</b> Geschätzte Reichweite pro Ladung. Kann je nach Wetter, Gepäck und Fahrweise variieren.<br><b>0-60:</b> Beschleunigung von 0 auf 100 km/h.<br><b>Laden:</b> Maximale Supercharger-Ladegeschwindigkeit.<br><b>Stauraum:</b> Gesamtes Ladevolumen des Fahrzeugs." data-en="<b>Range:</b> Estimated range per charge. May vary based on weather, cargo, and driving style.<br><b>0-60:</b> Acceleration from 0 to 60 mph.<br><b>Charging:</b> Maximum Supercharger speed.<br><b>Storage:</b> Total cargo volume."><b>Reichweite:</b> Geschätzte Reichweite pro Ladung. Kann je nach Wetter, Gepäck und Fahrweise variieren.<br><b>0-60:</b> Beschleunigung von 0 auf 100 km/h.<br><b>Laden:</b> Maximale Supercharger-Ladegeschwindigkeit.<br><b>Stauraum:</b> Gesamtes Ladevolumen des Fahrzeugs.</div>
+                        </button>
+                    </div>
                     <div class="stats-section">
                         <div class="stat-row">
                             <span class="stat-label"><i class="fas fa-bolt"></i> <span data-de="Reichweite" data-en="Range">Reichweite</span></span>
@@ -5773,6 +5923,7 @@
                             <span class="stat-value" data-de="1.925 L" data-en="68 cu ft">68 cu ft</span>
                         </div>
                     </div>
+                    <div class="stats-disclaimer" data-de="* Angaben dienen nur zur Veranschaulichung. Tatsächliche Werte können abweichen." data-en="* Values shown are for illustration purposes only. Actual performance may vary.">* Angaben dienen nur zur Veranschaulichung. Tatsächliche Werte können abweichen.</div>
 
                     <!-- Quick Specs -->
                     <div class="quick-specs">
@@ -6786,7 +6937,11 @@
                         pickupLocation: pickup,
                     };
 
-                    emailSummary.innerHTML = `<strong>${carSelect.value}</strong> &middot; ${days} Tag${days > 1 ? 'e' : ''} &middot; $${totalPrice.toLocaleString()} &middot; ${pickup}`;
+                    const isEN = document.documentElement.lang === 'en';
+                    const dayLabel = isEN ? (days > 1 ? 'days' : 'day') : (days > 1 ? 'Tage' : 'Tag');
+                    const feeLabel = isEN ? 'Service Fee' : 'Servicegebühr';
+                    const disclaimerText = isEN ? 'Final price confirmed after availability check' : 'Endpreis wird nach Verfügbarkeitsprüfung bestätigt';
+                    emailSummary.innerHTML = `<strong>${carSelect.value}</strong> &middot; ${days} ${dayLabel} &middot; $${totalPrice.toLocaleString()} &middot; ${pickup}<br><span style="color:#f97316;font-weight:600">+ $139 ${feeLabel}</span><br><span style="font-size:0.75rem;color:#999;">${disclaimerText}</span>`;
                     emailError.style.display = 'none';
                     emailInput.value = '';
                     emailModal.style.display = 'flex';
@@ -7493,24 +7648,33 @@
         });
     </script>
 
-    <!-- Fleet Card "Fahrzeug Buchen" Handler -->
+    <!-- Fleet Card "Mehr Erfahren" Handler — scroll to booking widget + pre-select vehicle -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const rentBtns = document.querySelectorAll('.pokemon-card .rent-btn');
-            
+            const vehicleMap = {
+                'Tesla Model Y Camping-Paket': 0,
+                'Cybertruck Off-Grid': 1,
+                'Model Y Budget': 2
+            };
+
             rentBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    // Get the car name from the card
                     const card = this.closest('.pokemon-card');
-                    const carName = card.querySelector('.card-name').textContent;
-                    const carPrice = card.querySelector('.card-price').textContent.trim();
-                    
-                    // Create WhatsApp message with car details
-                    const message = `Hallo! Ich interessiere mich für das ${carName} (${carPrice}/Tag). Können Sie mir bei der Verfügbarkeit helfen?`;
-                    const encodedMessage = encodeURIComponent(message);
-                    
-                    // Open WhatsApp
-                    window.open(`https://wa.me/13106006624?text=${encodedMessage}`, '_blank');
+                    const carName = card.querySelector('.card-name').textContent.trim();
+
+                    // Pre-select matching vehicle in booking widget dropdown
+                    const carSelect = document.getElementById('carSelect');
+                    if (carSelect && vehicleMap[carName] !== undefined) {
+                        carSelect.selectedIndex = vehicleMap[carName];
+                        carSelect.dispatchEvent(new Event('change'));
+                    }
+
+                    // Scroll to booking widget
+                    const bookingBar = document.getElementById('booking-bar');
+                    if (bookingBar) {
+                        bookingBar.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
                 });
             });
         });

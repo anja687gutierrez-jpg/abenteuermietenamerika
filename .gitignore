@@ -11,6 +11,6 @@
 /build
 
 # Large video files (exceed GitHub 100MB limit)
-tesla.mp4
 *.mp4
+!tesla.mp4
 .wrangler/

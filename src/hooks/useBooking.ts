@@ -5,12 +5,11 @@ import { useLanguage } from '../context/LanguageContext';
 // Types
 // ---------------------------------------------------------------------------
 
-/** Vehicle types matching the backend vehicleTypeEnum */
+/** Vehicle types matching the backend VEHICLE_MAP keys (marketing → DB mapping) */
 type VehicleType =
-  | 'tesla_model_y'
-  | 'tesla_model_x'
-  | 'tesla_model_3'
-  | 'tesla_cybertruck';
+  | 'model_y_camping'
+  | 'model_y_budget'
+  | 'cybertruck';
 
 /** Pickup locations offered on the frontend */
 type PickupLocation = 'Las Vegas' | 'Los Angeles' | 'San Francisco';
@@ -63,10 +62,9 @@ const SERVICE_FEE = 139;
 
 /** Client-side daily rates for estimate display. Server recalculates from DB. */
 const DAILY_RATES: Record<VehicleType, number> = {
-  tesla_model_y: 149,
-  tesla_model_x: 199,
-  tesla_model_3: 119,
-  tesla_cybertruck: 299,
+  model_y_camping: 216,
+  model_y_budget: 119,
+  cybertruck: 299,
 };
 
 // ---------------------------------------------------------------------------
@@ -218,8 +216,39 @@ export function useBooking(): UseBookingReturn {
         const url: string = data.checkoutUrl || data.bookingUrl;
         setState({ loading: false, error: null, checkoutUrl: url });
 
-        // Redirect to the guest booking flow
-        if (url) window.location.href = url;
+        // Extract guest token from platform URL (last path segment)
+        // e.g. https://abenteuer-mieten-platform.vercel.app/booking/abc123 → "abc123"
+        if (url) {
+          const guestToken = url.split('/').filter(Boolean).pop() || '';
+
+          // Compute client-side estimate for display on confirmation page
+          const est = estimate(
+            payload.vehicleType,
+            payload.pickupDate,
+            payload.dropoffDate
+          );
+
+          // Store booking summary in localStorage (survives refresh/tabs)
+          localStorage.setItem(
+            'booking_confirmation',
+            JSON.stringify({
+              token: guestToken,
+              vehicleType: payload.vehicleType,
+              pickupDate: payload.pickupDate,
+              dropoffDate: payload.dropoffDate,
+              pickupLocation: payload.pickupLocation,
+              customerEmail: payload.customerEmail,
+              days: est?.days ?? 0,
+              dailyRate: est?.dailyRate ?? 0,
+              subtotal: est?.subtotal ?? 0,
+              serviceFee: est?.serviceFee ?? SERVICE_FEE,
+              total: est?.total ?? 0,
+            })
+          );
+
+          // Redirect to the local confirmation page (stays on marketing site)
+          window.location.href = `/booking/${guestToken}`;
+        }
       } catch (err) {
         const fallback =
           locale === 'en'
@@ -232,7 +261,7 @@ export function useBooking(): UseBookingReturn {
         });
       }
     },
-    [locale, config.checkoutApiUrl, config.bookingSource, validateDates]
+    [locale, config.checkoutApiUrl, config.bookingSource, validateDates, estimate]
   );
 
   const reset = useCallback(() => {

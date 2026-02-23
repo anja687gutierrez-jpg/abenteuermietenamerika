@@ -1,6 +1,7 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useBooking } from '../../hooks/useBooking';
+import { EmailCheckoutModal } from './EmailCheckoutModal';
 import type { VehicleType, PickupLocation } from '../../hooks/useBooking';
 
 /**
@@ -22,19 +23,19 @@ interface VehicleOption {
 
 const VEHICLE_OPTIONS: VehicleOption[] = [
   {
-    value: 'tesla_model_y',
+    value: 'model_y_camping',
     de: 'Model Y (Camping Suite)',
     en: 'Model Y (Camping Suite)',
     dailyPrice: 216,
   },
   {
-    value: 'tesla_cybertruck',
+    value: 'cybertruck',
     de: 'Cybertruck (Off-Grid)',
     en: 'Cybertruck (Off-Grid)',
     dailyPrice: 299,
   },
   {
-    value: 'tesla_model_3',
+    value: 'model_y_budget',
     de: 'Model Y (Budget)',
     en: 'Model Y (Budget)',
     dailyPrice: 119,
@@ -48,34 +49,84 @@ const PICKUP_LOCATIONS: PickupLocation[] = [
 
 export function BookingBar() {
   const { t, locale, config } = useLanguage();
-  const { estimate, submit, loading, error } = useBooking();
+  const { estimate, submit, validateDates, loading, error, reset } = useBooking();
 
   const [vehicleType, setVehicleType] = useState<VehicleType>('' as VehicleType);
   const [pickupLocation, setPickupLocation] = useState<PickupLocation>('Los Angeles');
   const [pickupDate, setPickupDate] = useState('');
   const [dropoffDate, setDropoffDate] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
 
   const priceEstimate = useMemo(
     () => (pickupDate && dropoffDate && vehicleType ? estimate(vehicleType, pickupDate, dropoffDate) : null),
     [vehicleType, pickupDate, dropoffDate, estimate]
   );
 
+  const selectedVehicle = useMemo(
+    () => VEHICLE_OPTIONS.find((v) => v.value === vehicleType) ?? null,
+    [vehicleType]
+  );
+
+  const modalSummary = useMemo(() => {
+    if (!priceEstimate || !selectedVehicle) return null;
+    return {
+      vehicleName: locale === 'de' ? selectedVehicle.de : selectedVehicle.en,
+      days: priceEstimate.days,
+      totalPrice: priceEstimate.subtotal,
+      location: pickupLocation,
+    };
+  }, [priceEstimate, selectedVehicle, locale, pickupLocation]);
+
   const today = new Date().toISOString().split('T')[0];
 
+  // Open the email modal instead of submitting directly
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
       if (!vehicleType) return;
+
+      // Validate dates before opening modal
+      const dateError = validateDates(pickupDate, dropoffDate);
+      if (dateError) {
+        // Let useBooking handle the error display
+        submit({ vehicleType, pickupDate, dropoffDate, pickupLocation, customerEmail: '' });
+        return;
+      }
+
+      reset();
+      setModalOpen(true);
+    },
+    [vehicleType, pickupDate, dropoffDate, pickupLocation, validateDates, submit, reset]
+  );
+
+  // Called by the modal with the user's email
+  const handleModalSubmit = useCallback(
+    (email: string) => {
       submit({
         vehicleType,
         pickupDate,
         dropoffDate,
         pickupLocation,
-        customerEmail: '',
+        customerEmail: email,
       });
     },
     [vehicleType, pickupDate, dropoffDate, pickupLocation, submit]
   );
+
+  const handleModalClose = useCallback(() => {
+    setModalOpen(false);
+    reset();
+  }, [reset]);
+
+  // Listen for "Mehr Erfahren" clicks from FleetGrid to pre-select a vehicle
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const vehicleId = (e as CustomEvent<string>).detail;
+      if (vehicleId) setVehicleType(vehicleId as VehicleType);
+    };
+    document.addEventListener('select-vehicle', handler);
+    return () => document.removeEventListener('select-vehicle', handler);
+  }, []);
 
   return (
     <section id="booking-bar">
@@ -191,13 +242,22 @@ export function BookingBar() {
           </div>
         </div>
 
-        {/* Error display */}
-        {error && (
+        {/* Error display (form-level, e.g. date validation before modal opens) */}
+        {error && !modalOpen && (
           <div style={{ marginTop: '1rem', padding: '0.75rem 1rem', borderRadius: '8px', background: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.3)', color: '#fca5a5', fontSize: '0.875rem', textAlign: 'center' }}>
             {error}
           </div>
         )}
       </div>
+
+      <EmailCheckoutModal
+        isOpen={modalOpen}
+        onClose={handleModalClose}
+        summary={modalSummary}
+        onSubmit={handleModalSubmit}
+        loading={loading}
+        error={modalOpen ? error : null}
+      />
     </section>
   );
 }

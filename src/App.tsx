@@ -6,6 +6,7 @@ import { FlottePage } from './pages/Flotte';
 import { RoutenPage } from './pages/Routen';
 import { PreisePage } from './pages/Preise';
 import { NotFoundPage } from './pages/NotFound';
+import { BookingConfirmationPage } from './pages/BookingConfirmation';
 
 // Global overlays (fixed-position, every page)
 import { KlausyBubble } from './components/ai/KlausyBubble';
@@ -32,6 +33,7 @@ export function App() {
         <Route path="/flotte" element={<FlottePage />} />
         <Route path="/routen" element={<RoutenPage />} />
         <Route path="/preise" element={<PreisePage />} />
+        <Route path="/booking/:token" element={<BookingConfirmationPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 

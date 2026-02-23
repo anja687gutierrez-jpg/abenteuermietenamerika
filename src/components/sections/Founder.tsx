@@ -73,6 +73,7 @@ export function Founder() {
                 <>
                   <p>Kein simples Mietauto — ein kuratiertes Roadtrip-Paket: Tesla, Camping-Ausrüstung, intelligente Routenplanung und persönlicher Concierge als geschlossenes System, gebucht über meine Plattform:</p>
                   <p><strong>Der digitale Co-Pilot</strong> — Unsere eigenständige App gibt der Tesla-Telemetrie eine Seele. Sie berechnet nicht nur Ladestopps — sie verwandelt jeden Kilometer in ein Erlebnis: versteckte Wasserfälle, lokale Geheimtipps, Nationalpark-Highlights. 7 KI-Reisepersönlichkeiten begleiten Sie unterwegs. Sie erleben, staunen, entdecken — und kommen garantiert an.</p>
+                  <p><strong>Mehr Seele, weniger Datenbankstruktur.</strong></p>
                   <p><strong>Klausy Concierge Buddy</strong> — Ihr KI-Reisebegleiter mit logischer Datenanalyse und meiner persönlichen Erfahrung. Supercharger, Insider-Spots, Echtzeit-Backup.</p>
                   <p>Die Technik arbeitet lautlos im Hintergrund. <strong>Sie konzentrieren sich auf das Staunen — ich garantiere die Energie.</strong></p>
                 </>
@@ -80,6 +81,7 @@ export function Founder() {
                 <>
                   <p>Not a simple rental car—a curated roadtrip package: Tesla, camping gear, intelligent route planning, and personal concierge as a closed system, booked through my platform:</p>
                   <p><strong>The Digital Co-Pilot</strong> — Our standalone app gives Tesla&apos;s telemetry a soul. It doesn&apos;t just calculate charging stops — it transforms every mile into an experience: hidden waterfalls, local insider tips, national park highlights. 7 AI travel personas guide you along the way. You experience, wonder, discover — and arrive guaranteed.</p>
+                  <p><strong>More soul, less database structure.</strong></p>
                   <p><strong>Klausy Concierge Buddy</strong> — Your AI travel companion with logical data analysis and my personal experience. Superchargers, insider spots, real-time backup.</p>
                   <p>The technology works silently in the background. <strong>You focus on the wonder—I guarantee the energy.</strong></p>
                 </>

@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAnalytics } from '../../hooks/useAnalytics';
 
@@ -149,6 +150,21 @@ const VEHICLES: VehicleCard[] = [
 export function FleetGrid() {
   const { t, locale } = useLanguage();
   const { trackVehicleView } = useAnalytics();
+
+  const handleLearnMore = useCallback((vehicle: VehicleCard) => {
+    trackVehicleView(vehicle.name, vehicle.price);
+
+    // Dispatch event so BookingBar can pre-select the vehicle
+    document.dispatchEvent(
+      new CustomEvent('select-vehicle', { detail: vehicle.id })
+    );
+
+    // Scroll to booking bar
+    document.getElementById('booking-bar')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
+  }, [trackVehicleView]);
 
   return (
     <section id="fleet" style={{ background: '#EAEAEC' }}>
@@ -325,11 +341,12 @@ export function FleetGrid() {
                 </div>
               </div>
 
-              {/* CTA button */}
+              {/* CTA button — scrolls to booking bar + pre-selects vehicle */}
               <button
                 className="rent-btn"
                 data-vehicle={v.name}
                 data-price={v.price}
+                onClick={() => handleLearnMore(v)}
               >
                 {t('Mehr Erfahren', 'Learn More')}
               </button>

@@ -31,8 +31,8 @@ const routes = ['/', '/flotte', '/routen', '/preise'];
 
 // Sites to pre-render
 const sites = [
-  { siteId: 'ama', lang: 'de', outDir: 'dist/client-ama' },
-  { siteId: 'giw', lang: 'en', outDir: 'dist/client-giw' },
+  { siteId: 'ama', lang: 'de', outDir: 'dist/client-ama', domain: 'www.abenteuermietenamerika.de' },
+  { siteId: 'giw', lang: 'en', outDir: 'dist/client-giw', domain: 'www.goiconicway.com' },
 ];
 
 async function prerender() {
@@ -96,6 +96,68 @@ async function prerender() {
       const size = (Buffer.byteLength(rendered) / 1024).toFixed(1);
       console.log(`  ${route.padEnd(12)} → ${outPath.replace(root + '/', '')} (${size} KB)`);
     }
+  }
+
+  // 6. Generate site-specific robots.txt and sitemap.xml
+  for (const site of sites) {
+    const siteOutBase = resolve(root, site.outDir);
+    const siteUrl = `https://${site.domain}`;
+    const today = new Date().toISOString().split('T')[0];
+
+    // robots.txt
+    const robotsTxt = [
+      `# Robots.txt for ${site.domain}`,
+      `# ${siteUrl}`,
+      '',
+      'User-agent: *',
+      'Allow: /',
+      '',
+      `Sitemap: ${siteUrl}/sitemap.xml`,
+      '',
+      'Crawl-delay: 1',
+      '',
+      'User-agent: Googlebot',
+      'Allow: /',
+      '',
+      'User-agent: Bingbot',
+      'Allow: /',
+      '',
+      'User-agent: Slurp',
+      'Allow: /',
+      '',
+      'User-agent: DuckDuckBot',
+      'Allow: /',
+      '',
+    ].join('\n');
+    writeFileSync(resolve(siteOutBase, 'robots.txt'), robotsTxt, 'utf-8');
+    console.log(`  robots.txt → ${site.outDir}/robots.txt`);
+
+    // sitemap.xml
+    const sitemapEntries = routes
+      .map((r) => {
+        const loc = r === '/' ? siteUrl : `${siteUrl}${r}`;
+        const priority = r === '/' ? '1.0' : '0.8';
+        return [
+          '  <url>',
+          `    <loc>${loc}</loc>`,
+          `    <lastmod>${today}</lastmod>`,
+          `    <changefreq>weekly</changefreq>`,
+          `    <priority>${priority}</priority>`,
+          '  </url>',
+        ].join('\n');
+      })
+      .join('\n');
+
+    const sitemapXml = [
+      '<?xml version="1.0" encoding="UTF-8"?>',
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+      '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+      sitemapEntries,
+      '</urlset>',
+      '',
+    ].join('\n');
+    writeFileSync(resolve(siteOutBase, 'sitemap.xml'), sitemapXml, 'utf-8');
+    console.log(`  sitemap.xml → ${site.outDir}/sitemap.xml`);
   }
 
   console.log('\n[prerender] Done. Static HTML ready for deployment.');

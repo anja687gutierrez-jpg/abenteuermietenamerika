@@ -14,3 +14,6 @@
 *.mp4
 !tesla.mp4
 .wrangler/
+
+# Vite
+*.local

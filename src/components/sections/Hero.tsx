@@ -125,15 +125,6 @@ export function Hero() {
                 <span>{t('Abenteuer Starten', 'Start Adventure')}</span>{' '}
                 <i className="fas fa-arrow-right" />
               </a>
-              <a
-                href={config.whatsappUrl}
-                className="btn-main btn-whatsapp-mobile"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-whatsapp" />{' '}
-                <span>{t('WhatsApp Kontakt', 'WhatsApp Contact')}</span>
-              </a>
             </div>
           </div>
         </div>

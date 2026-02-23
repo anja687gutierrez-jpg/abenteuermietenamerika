@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@vuer-ai/react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
 import type { SiteConfig } from '../context/LanguageContext';
 

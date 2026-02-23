@@ -28,7 +28,7 @@ export default defineConfig(({ isSsrBuild }) => ({
 
   // Bundle CJS packages into the SSR output to avoid ESM/CJS interop issues
   ssr: {
-    noExternal: ['react-helmet-async'],
+    noExternal: ['@vuer-ai/react-helmet-async'],
   },
 
   build: {

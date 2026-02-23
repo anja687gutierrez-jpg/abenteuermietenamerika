@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from '@vuer-ai/react-helmet-async';
 import { LanguageProvider } from './context/LanguageContext';
 import { App } from './App';
 

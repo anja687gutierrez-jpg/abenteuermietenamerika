@@ -1,6 +1,6 @@
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
+import { HelmetProvider, HelmetServerState } from '@vuer-ai/react-helmet-async';
 import { LanguageProvider } from './context/LanguageContext';
 import type { SiteId } from './context/LanguageContext';
 import { App } from './App';

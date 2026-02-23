@@ -132,26 +132,64 @@ async function prerender() {
     writeFileSync(resolve(siteOutBase, 'robots.txt'), robotsTxt, 'utf-8');
     console.log(`  robots.txt → ${site.outDir}/robots.txt`);
 
-    // sitemap.xml
+    // sitemap.xml — with hreflang cross-references and image tags
+    const amaUrl = 'https://www.abenteuermietenamerika.de';
+    const giwUrl = 'https://www.goiconicway.com';
+
+    // Image metadata per route (for Google Image Search)
+    const routeImages = {
+      '/': [
+        { file: 'teslamodely_flipcard1.jpg', title: 'Tesla Model Y Camper mit Dachzelt', caption: 'Tesla Model Y Camping Setup für USA Roadtrips und Route 66' },
+        { file: 'cybertruck_flipcard2.jpg', title: 'Tesla Cybertruck Off-Grid Camping', caption: 'Cybertruck mit Starlink und Campingausrüstung' },
+        { file: '14-days-sunsets-skyline.jpg', title: 'Route 66 Tesla Roadtrip', caption: 'Route 66 - 14 Tage von Chicago nach Santa Monica mit dem Tesla' },
+      ],
+      '/flotte': [
+        { file: 'teslamodely_flipcard.jpg', title: 'Tesla Model Y Camping-Paket', caption: 'Model Y mit Dachzelt und Campingausrüstung' },
+        { file: 'cybertruck_flipcard.jpg', title: 'Tesla Cybertruck Off-Grid Paket', caption: 'Cybertruck für Off-Grid Camping in den USA' },
+      ],
+      '/routen': [
+        { file: 'zion-campsite-tesla.jpg', title: 'Grand Circle Adventure', caption: 'Tesla Camping am Zion Nationalpark' },
+        { file: 'rockymountainroute.jpg', title: 'Rocky Mountain Roadtrip', caption: 'Tesla Camping Yellowstone Nationalpark' },
+        { file: 'pacificcoasthighway.jpg', title: 'Pacific Coast Highway', caption: 'Big Sur und Kalifornien Tesla Roadtrip' },
+      ],
+      '/preise': [],
+    };
+
     const sitemapEntries = routes
       .map((r) => {
         const loc = r === '/' ? siteUrl : `${siteUrl}${r}`;
+        const amaLoc = r === '/' ? amaUrl : `${amaUrl}${r}`;
+        const giwLoc = r === '/' ? giwUrl : `${giwUrl}${r}`;
         const priority = r === '/' ? '1.0' : '0.8';
+        const images = (routeImages[r] || [])
+          .map((img) => [
+            '    <image:image>',
+            `      <image:loc>${siteUrl}/${img.file}</image:loc>`,
+            `      <image:title>${img.title}</image:title>`,
+            `      <image:caption>${img.caption}</image:caption>`,
+            '    </image:image>',
+          ].join('\n'))
+          .join('\n');
+
         return [
           '  <url>',
           `    <loc>${loc}</loc>`,
+          `    <xhtml:link rel="alternate" hreflang="de" href="${amaLoc}"/>`,
+          `    <xhtml:link rel="alternate" hreflang="en" href="${giwLoc}"/>`,
           `    <lastmod>${today}</lastmod>`,
           `    <changefreq>weekly</changefreq>`,
           `    <priority>${priority}</priority>`,
+          images,
           '  </url>',
-        ].join('\n');
+        ].filter(Boolean).join('\n');
       })
       .join('\n');
 
     const sitemapXml = [
       '<?xml version="1.0" encoding="UTF-8"?>',
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
-      '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+      '        xmlns:xhtml="http://www.w3.org/1999/xhtml"',
+      '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">',
       sitemapEntries,
       '</urlset>',
       '',

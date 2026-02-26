@@ -17,12 +17,19 @@ export function KlausyBubble() {
   const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
 
   useEffect(() => {
-    if (dismissed) return;
-    const timer = setTimeout(() => setVisible(true), 8000);
+    const onScroll = () => setPastHero(window.scrollY > window.innerHeight * 0.8);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (dismissed || !pastHero) return;
+    const timer = setTimeout(() => setVisible(true), 3000);
     return () => clearTimeout(timer);
-  }, [dismissed]);
+  }, [dismissed, pastHero]);
 
   const dismiss = useCallback(() => {
     setVisible(false);

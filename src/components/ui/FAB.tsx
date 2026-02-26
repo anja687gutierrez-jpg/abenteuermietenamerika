@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { openExitPopup } from './ExitIntentPopup';
 
@@ -18,6 +18,13 @@ import { openExitPopup } from './ExitIntentPopup';
 export function FAB() {
   const { t, config } = useLanguage();
   const [open, setOpen] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setPastHero(window.scrollY > window.innerHeight * 0.8);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const toggle = useCallback(() => setOpen((prev) => !prev), []);
 
@@ -33,7 +40,7 @@ export function FAB() {
   }, []);
 
   return (
-    <div className={`unified-fab${open ? ' open' : ''}`} id="unifiedFab">
+    <div className={`unified-fab${open ? ' open' : ''}${pastHero ? ' past-hero' : ''}`} id="unifiedFab" style={{ opacity: pastHero ? 1 : 0, pointerEvents: pastHero ? 'auto' : 'none', transition: 'opacity 0.4s ease' }}>
       {/* Expandable options — order matches original: Guide, Concierge, WhatsApp */}
       <div className="fab-options">
         <button

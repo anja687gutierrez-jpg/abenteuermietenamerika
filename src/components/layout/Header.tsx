@@ -8,7 +8,7 @@ import { LiquidMetalButton } from '../ui/LiquidMetalButton';
  *
  * Uses CSS classes from design-system.css:
  *   header, nav, .logo-link, .logo-text, .logo-line-1, .logo-line-2,
- *   .nav-links, .nav-link, .nav-actions, .founding-badge,
+ *   .nav-links, .nav-link, .nav-actions,
  *   .lang-toggle, .lang-btn, .login-btn,
  *   .mobile-menu-toggle, .hamburger,
  *   .mobile-nav-overlay, .mobile-nav-drawer, .mobile-nav-header,
@@ -103,12 +103,6 @@ export function Header() {
 
           {/* Nav actions */}
           <div className="nav-actions">
-            {/* Founding Phase Badge */}
-            <div className="founding-badge">
-              <i className="fas fa-rocket" />
-              <span>{t('Gründungsphase', 'Founding Phase')}</span>
-            </div>
-
             {/* Language switcher (AMA only) */}
             {isBilingual && (
               <div className="lang-toggle" id="langToggle">

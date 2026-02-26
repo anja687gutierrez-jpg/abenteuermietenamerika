@@ -530,22 +530,43 @@ nav { max-width: 1600px; margin: 0 auto; padding: 0 var(--space-8); display: fle
 /* ============================================================
    07. BUTTONS (shared patterns)
    ============================================================ */
-.login-btn {
-    background: var(--gradient-accent);
-    background-size: 200% auto;
-    color: var(--color-white);
-    padding: 0.6rem 1.5rem;
+.liquid-metal-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 8.5rem;
+    height: 2.75rem;
+    padding: 0 1.25rem;
     border-radius: var(--radius-pill);
-    font-size: var(--text-md);
-    border: none;
-    transition: var(--duration-base);
+    overflow: hidden;
     cursor: pointer;
-    font-weight: var(--weight-semibold);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     text-decoration: none;
-    display: inline-block;
+    font-size: var(--text-md);
+    font-weight: var(--weight-semibold);
+    color: var(--color-slate-700);
+    border: none;
+    transition: transform var(--duration-base), box-shadow var(--duration-base);
 }
-.login-btn:hover { background-position: right center; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); color: var(--color-white); }
+.liquid-metal-shader {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+}
+.liquid-metal-inner {
+    position: absolute;
+    inset: 2px;
+    border-radius: inherit;
+    background: rgba(250, 250, 252, 0.92);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+.liquid-metal-label {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    z-index: 1;
+}
+.liquid-metal-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12); }
 
 .btn-main {
     padding: 0.7rem 1.5rem;
@@ -2439,7 +2460,7 @@ footer { border-top: 1px solid rgba(255, 255, 255, 0.05); background: var(--colo
     .logo-img { height: 45px; }
     .nav-links { display: none; }
     .nav-actions { gap: 0.4rem; }
-    .login-btn { display: none; }
+    .liquid-metal-btn { display: none; }
     #google_translate_element { display: none; }
     .lang-toggle { transform: scale(0.85); }
 
@@ -2613,7 +2634,7 @@ footer { border-top: 1px solid rgba(255, 255, 255, 0.05); background: var(--colo
     .sticky-lead-text { flex-direction: column; gap: var(--space-2); }
 
     /* --- Button Touch Targets --- */
-    .btn-main, .rent-btn, .route-btn, .login-btn { min-height: 48px; padding: 0.9rem var(--space-6); }
+    .btn-main, .rent-btn, .route-btn, .liquid-metal-btn { min-height: 48px; padding: 0.9rem var(--space-6); }
     .mobile-nav-link { min-height: 48px; display: flex; align-items: center; }
     .lang-btn { min-height: 44px; padding: var(--space-2) var(--space-4); }
 

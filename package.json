@@ -15,9 +15,10 @@
     "setup:hooks": "cp scripts/post-commit .git/hooks/post-commit && chmod +x .git/hooks/post-commit && echo '✓ Git hooks installed'"
   },
   "dependencies": {
+    "@paper-design/shaders-react": "^0.0.71",
+    "@vuer-ai/react-helmet-async": "^2.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "@vuer-ai/react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.1.0"
   },
   "devDependencies": {

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
+import { LiquidMetalButton } from '../ui/LiquidMetalButton';
 
 /**
  * Header — exact structure from legacy index.html
@@ -127,15 +128,18 @@ export function Header() {
             )}
 
             {/* WhatsApp CTA */}
-            <a
+            <LiquidMetalButton
               href={config.whatsappUrl}
-              className="login-btn"
               target="_blank"
               rel="noopener noreferrer"
+              speed={0.4}
+              repetition={6}
+              softness={0.6}
+              shiftBlue={0.4}
+              scale={10}
             >
-              <i className="fab fa-whatsapp" style={{ marginRight: '0.4rem' }} />
-              <span>{t('Kontakt', 'Contact Us')}</span>
-            </a>
+              {t('Kontakt', 'Contact Us')}
+            </LiquidMetalButton>
 
             {/* Mobile Menu Toggle */}
             <button

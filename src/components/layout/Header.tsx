@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
-import { LiquidMetalButton } from '../ui/LiquidMetalButton';
 
 /**
  * Header — exact structure from legacy index.html
@@ -121,19 +120,10 @@ export function Header() {
               </div>
             )}
 
-            {/* WhatsApp CTA */}
-            <LiquidMetalButton
-              href={config.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              speed={0.4}
-              repetition={6}
-              softness={0.6}
-              shiftBlue={0.4}
-              scale={10}
-            >
+            {/* Contact link */}
+            <a href="#contact" className="nav-link">
               {t('Kontakt', 'Contact Us')}
-            </LiquidMetalButton>
+            </a>
 
             {/* Mobile Menu Toggle */}
             <button

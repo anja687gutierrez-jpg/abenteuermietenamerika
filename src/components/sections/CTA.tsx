@@ -1,10 +1,11 @@
 import { useLanguage } from '../../context/LanguageContext';
+import { LiquidMetalButton } from '../ui/LiquidMetalButton';
 
 /**
  * CTA — Final call-to-action section
  *
  * Uses CSS classes from design-system.css:
- *   .cta, .cta-content, .cta-title, .cta-text, .btn-main
+ *   .cta, .cta-content, .cta-title, .cta-text
  */
 export function CTA() {
   const { t, config } = useLanguage();
@@ -21,15 +22,18 @@ export function CTA() {
             'Start planning your ultimate road trip today. Our team is available 24/7.'
           )}
         </p>
-        <a
+        <LiquidMetalButton
           href={config.whatsappUrl}
-          className="btn-main"
           target="_blank"
           rel="noopener noreferrer"
+          speed={0.4}
+          repetition={6}
+          softness={0.6}
+          shiftBlue={0.4}
+          scale={10}
         >
-          <i className="fab fa-whatsapp" />
-          {' '}<span>{t('Jetzt Kontaktieren', 'Contact Us Now')}</span>
-        </a>
+          {t('Jetzt Kontaktieren', 'Contact Us Now')}
+        </LiquidMetalButton>
       </div>
     </section>
   );

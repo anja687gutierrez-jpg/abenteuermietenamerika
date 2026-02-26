@@ -40,9 +40,8 @@ export function Hero() {
           className="hero-video"
           autoPlay
           muted
-          loop
           playsInline
-          poster="/zion-campsite-tesla.jpg"
+          poster="/hero-poster.jpg"
         >
           <source src="/tesla.mp4" type="video/mp4" />
         </video>

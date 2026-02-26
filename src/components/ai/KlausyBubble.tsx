@@ -34,15 +34,16 @@ export function KlausyBubble() {
   const dismiss = useCallback(() => {
     setVisible(false);
     setDismissed(true);
+    // 5-minute cooldown before Klausy can reappear
+    setTimeout(() => setDismissed(false), 5 * 60 * 1000);
   }, []);
 
   const scrollToConcierge = useCallback(() => {
-    dismiss();
+    setVisible(false);
+    setDismissed(true);
     const el = document.getElementById('concierge');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
-  }, [dismiss]);
-
-  if (dismissed && !visible) return null;
+  }, []);
 
   return (
     <div className={`klausy-bubble${visible ? ' visible' : ''}`} id="klausyBubble">

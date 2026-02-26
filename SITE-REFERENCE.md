@@ -7,7 +7,7 @@ Last updated: January 20, 2026
 |------|-------|
 | **Domain** | `abenteuermietenamerika.de` |
 | **Website URL** | https://abenteuermietenamerika.de |
-| **Email** | info@abenteuermietenamerika.de |
+| **Email** | info@goiconicway.com |
 | **Hosting** | Cloudflare (manual upload) |
 | **Git Repository** | https://github.com/engel687-ui/abenteuermietenamerika.git |
 
@@ -30,7 +30,7 @@ Last updated: January 20, 2026
 ## Email Setup
 
 - **Provider:** GoDaddy (forwarding only)
-- **Email:** info@abenteuermietenamerika.de
+- **Email:** info@goiconicway.com
 - **Forwards to:** anja687gutierrez@gmail.com
 - **Cost:** FREE (included with domain registration)
 

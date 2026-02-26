@@ -1,4 +1,3 @@
-import { useState, useCallback } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 
 /**
@@ -6,31 +5,14 @@ import { useLanguage } from '../../context/LanguageContext';
  *
  * Uses CSS classes from design-system.css:
  *   .hero, .hero-bg, .hero-video, .hero-static-image, .hero-overlay,
- *   .hero-container (2-col grid), .hero-content, .hero-badge,
+ *   .hero-container, .hero-content, .hero-badge,
  *   .hero-title .highlight (LED animation), .hero-desc,
- *   .opal-pill, .hero-actions, .stats-box, .btn-group, .btn-main,
- *   .hero-lead-capture, .hero-lead-form
+ *   .opal-pill, .hero-actions, .stats-box, .btn-group, .btn-main
+ *
+ * Lead capture removed from hero — handled by exit-intent popup + FAB "Free Guide".
  */
 export function Hero() {
-  const { t, config } = useLanguage();
-  const [leadEmail, setLeadEmail] = useState('');
-  const [leadSubmitted, setLeadSubmitted] = useState(false);
-
-  const handleLeadSubmit = useCallback(
-    (e: React.FormEvent) => {
-      e.preventDefault();
-      if (!leadEmail.trim()) return;
-      // Send to Google Sheets endpoint
-      fetch(config.googleSheetsUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: leadEmail, source: config.siteId + ':hero-lead-capture' }),
-      });
-      setLeadSubmitted(true);
-    },
-    [leadEmail, config.googleSheetsUrl]
-  );
+  const { t } = useLanguage();
 
   return (
     <section className="hero" id="home">
@@ -128,84 +110,6 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Right column — Lead Capture */}
-        <div className="hero-lead-capture" id="heroLeadCapture">
-          {!leadSubmitted ? (
-            <>
-              <div className="lead-capture-badge">
-                <i className="fas fa-download" />{' '}
-                <span>{t('Kostenlos herunterladen', 'Free Download')}</span>
-              </div>
-              <h3 className="lead-capture-title">
-                {t(
-                  'Der ultimative USA Roadtrip Guide',
-                  'The Ultimate USA Roadtrip Guide'
-                )}
-              </h3>
-              <ul className="lead-capture-benefits">
-                <li>
-                  <i className="fas fa-check-circle" />{' '}
-                  <span>
-                    {t(
-                      'Komplette Packliste für Camping-Roadtrips',
-                      'Complete packing list for camping roadtrips'
-                    )}
-                  </span>
-                </li>
-                <li>
-                  <i className="fas fa-check-circle" />{' '}
-                  <span>
-                    {t(
-                      'Geheimtipps zu Tesla Supercharger-Stops',
-                      'Insider tips for Tesla Supercharger stops'
-                    )}
-                  </span>
-                </li>
-                <li>
-                  <i className="fas fa-check-circle" />{' '}
-                  <span>
-                    {t(
-                      'Exklusive Rabattcodes für Partner-Campingplätze',
-                      'Exclusive discount codes for partner campsites'
-                    )}
-                  </span>
-                </li>
-              </ul>
-              <form className="hero-lead-form" onSubmit={handleLeadSubmit}>
-                <input
-                  type="email"
-                  value={leadEmail}
-                  onChange={(e) => setLeadEmail(e.target.value)}
-                  placeholder={t('Ihre E-Mail-Adresse', 'Your email address')}
-                  required
-                />
-                <button type="submit">
-                  <i className="fas fa-paper-plane" />{' '}
-                  <span>{t('Guide Anfordern', 'Get the Guide')}</span>
-                </button>
-              </form>
-              <p className="lead-capture-privacy">
-                <i className="fas fa-lock" />{' '}
-                <span>
-                  {t(
-                    'Wir respektieren Ihre Privatsphäre. Kein Spam.',
-                    'We respect your privacy. No spam.'
-                  )}
-                </span>
-              </p>
-            </>
-          ) : (
-            <div className="lead-form-success">
-              <h4>{t('Vielen Dank!', 'Thank you!')}</h4>
-              <p>
-                {t(
-                  'Ihr Guide ist unterwegs — prüfen Sie Ihre E-Mail.',
-                  'Your guide is on the way — check your email.'
-                )}
-              </p>
-            </div>
-          )}
-        </div>
       </div>
     </section>
   );

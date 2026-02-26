@@ -76,7 +76,7 @@ const SITE_CONFIGS: Record<SiteId, SiteConfig> = {
     partnerSiteUrl: 'https://www.goiconicway.com',
     siteName: 'Abenteuer Mieten Amerika',
     companyDba: 'Gutierrez Ventures LLC DBA Abenteuer Mieten Amerika\u2122',
-    contactEmail: 'info@abenteuermietenamerika.de',
+    contactEmail: 'info@goiconicway.com',
     ogImage: 'https://www.abenteuermietenamerika.de/og-image.jpg',
     ga4MeasurementId: 'G-7LCWYNKB6M',
     googleAdsId: 'AW-XXXXXXXXXX',

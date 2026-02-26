@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# Sync built AMA site to Google Drive as backup
+# Runs automatically after every commit
+#
+# Install: cp scripts/post-commit .git/hooks/post-commit && chmod +x .git/hooks/post-commit
+
+DRIVE_LIVE="/Users/anjacarrillo/Library/CloudStorage/GoogleDrive-anja687gutierrez@gmail.com/My Drive/Business/Website Projects/Abenteuer Mieten Amerika/LIVE"
+DIST_AMA="/Users/anjacarrillo/Projects/abenteuer-mieten-live/dist/client-ama"
+
+# Only sync if a build exists
+if [ -d "$DIST_AMA" ]; then
+  rsync -a --delete \
+    --exclude='.DS_Store' \
+    "$DIST_AMA/" "$DRIVE_LIVE/"
+  echo "✓ Drive backup synced (AMA → LIVE)"
+else
+  echo "⚠ No build found — run 'npm run build' first, then commit to sync Drive"
+fi

@@ -63,7 +63,7 @@ export function ExitIntentPopup() {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: 'exit-intent-popup' }),
+        body: JSON.stringify({ email, source: config.siteId + ':exit-intent-popup' }),
       });
       setSubmitted(true);
     },

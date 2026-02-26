@@ -25,7 +25,7 @@ export function Hero() {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: leadEmail, source: 'hero-lead-capture' }),
+        body: JSON.stringify({ email: leadEmail, source: config.siteId + ':hero-lead-capture' }),
       });
       setLeadSubmitted(true);
     },

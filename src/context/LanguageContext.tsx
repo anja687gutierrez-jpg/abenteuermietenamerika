@@ -94,7 +94,7 @@ const SITE_CONFIGS: Record<SiteId, SiteConfig> = {
       'https://abenteuer-mieten-platform.vercel.app/api/public/checkout',
     bookingSource: 'goiconicway',
     googleSheetsUrl:
-      'https://script.google.com/macros/s/AKfycbzF4t-juXYphl5JjFjzurt9ARcaYnyOHYo4vCVUgmb99l96p-seSdcQJTZKaP5d92icyg/exec',
+      'https://script.google.com/macros/s/AKfycbyxfNu1agsGuY2fVx7hJ-_3W-ogGg3kEx81Jgm_6LmWUAkjXCPemR2_2B35dFbdF7c/exec',
     whatsappUrl: 'https://wa.me/13106006624',
     siteUrl: 'https://www.goiconicway.com',
     partnerSiteUrl: 'https://www.abenteuermietenamerika.de',

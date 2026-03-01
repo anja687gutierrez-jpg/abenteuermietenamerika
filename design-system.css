@@ -2478,7 +2478,7 @@ footer { border-top: 1px solid rgba(255, 255, 255, 0.05); background: var(--colo
     .mobile-nav-overlay, .mobile-nav-drawer { display: none; }
 
     /* --- Hero --- */
-    .hero { padding-top: 100px; padding-bottom: var(--space-12); min-height: 100vh; min-height: 100dvh; }
+    .hero { padding-top: 110px; padding-bottom: var(--space-12); min-height: 100vh; min-height: 100dvh; }
     .hero-container { padding: 0 var(--space-5); }
     .hero-overlay {
         background: linear-gradient(180deg,

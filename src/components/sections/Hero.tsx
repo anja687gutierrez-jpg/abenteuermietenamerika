@@ -1,4 +1,11 @@
+import { useEffect, useRef } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
+
+const LOOP_START = 6;
+const LOOP_SPEED = 0.4;
+const FADE_SPEED = 1;
+const FADE_DURATION = 1.5;
+const MAX_LOOPS = 2; // loop waves twice, then freeze on last frame
 
 /**
  * Hero section — exact DOM structure from legacy index.html.
@@ -13,19 +20,101 @@ import { useLanguage } from '../../context/LanguageContext';
  */
 export function Hero() {
   const { t } = useLanguage();
+  const videoARef = useRef<HTMLVideoElement>(null);
+  const videoBRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const a = videoARef.current;
+    const b = videoBRef.current;
+    if (!a || !b) return;
+
+    let active = a;
+    let standby = b;
+    let fading = false;
+    let loopCount = 0; // tracks completed loops of the waves section
+
+    const fadeVideoTime = FADE_DURATION * FADE_SPEED;
+
+    standby.currentTime = LOOP_START;
+    standby.style.opacity = '0';
+
+    const onTimeUpdate = () => {
+      if (fading) return;
+      const remaining = active.duration - active.currentTime;
+
+      // Last loop — just let it play to the end and freeze
+      if (loopCount >= MAX_LOOPS) return;
+
+      if (remaining <= fadeVideoTime) {
+        fading = true;
+        loopCount++;
+
+        // Speed up for crossfade
+        active.playbackRate = FADE_SPEED;
+
+        // Start standby at normal speed
+        standby.currentTime = LOOP_START;
+        standby.playbackRate = FADE_SPEED;
+        standby.play();
+
+        const fadeStart = performance.now();
+
+        const tick = () => {
+          const elapsed = (performance.now() - fadeStart) / 1000;
+          const progress = Math.min(elapsed / FADE_DURATION, 1);
+          standby.style.opacity = String(progress);
+          active.style.opacity = String(1 - progress);
+
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          } else {
+            active.pause();
+            active.currentTime = LOOP_START;
+            active.style.opacity = '0';
+            standby.style.opacity = '1';
+            standby.playbackRate = LOOP_SPEED;
+
+            const prev = active;
+            active = standby;
+            standby = prev;
+            fading = false;
+          }
+        };
+        requestAnimationFrame(tick);
+      }
+    };
+
+    a.addEventListener('timeupdate', onTimeUpdate);
+    b.addEventListener('timeupdate', onTimeUpdate);
+
+    return () => {
+      a.removeEventListener('timeupdate', onTimeUpdate);
+      b.removeEventListener('timeupdate', onTimeUpdate);
+    };
+  }, []);
 
   return (
     <section className="hero" id="home">
       <div className="hero-bg">
-        {/* Desktop: Video */}
+        {/* Desktop: Two stacked videos — crossfade at normal speed, slow loop */}
         <video
+          ref={videoARef}
           className="hero-video"
           autoPlay
           muted
           playsInline
           poster="/hero-poster.jpg"
         >
-          <source src="/tesla.mp4" type="video/mp4" />
+          <source src="/hero-loop.mp4" type="video/mp4" />
+        </video>
+        <video
+          ref={videoBRef}
+          className="hero-video"
+          muted
+          playsInline
+          style={{ position: 'absolute', top: 0, left: 0, opacity: 0 }}
+        >
+          <source src="/hero-loop.mp4" type="video/mp4" />
         </video>
         {/* Mobile: Static Image with Ken Burns */}
         <div className="hero-static-image" aria-hidden="true" />

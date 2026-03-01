@@ -12,7 +12,7 @@
 
 # Large video files (exceed GitHub 100MB limit)
 *.mp4
-!tesla.mp4
+!public/hero-loop.mp4
 .wrangler/
 
 # Vite

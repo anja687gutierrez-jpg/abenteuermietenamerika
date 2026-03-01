@@ -672,7 +672,7 @@ nav { max-width: 1600px; margin: 0 auto; padding: 0 var(--space-8); display: fle
     height: 100%;
     background-image: url('hero-poster.jpg');
     background-size: cover;
-    background-position: center 30%;
+    background-position: center center;
     animation: heroPan 25s ease-in-out infinite alternate;
 }
 

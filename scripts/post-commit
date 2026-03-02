@@ -1,19 +1,44 @@
 #!/bin/zsh
 
-# Sync built AMA site to Google Drive as backup
-# Runs automatically after every commit
+# Post-commit: rebuild dist/ and sync to Google Drive
+# Keeps local dist/, Drive backup, and git in sync on every commit.
 #
-# Install: cp scripts/post-commit .git/hooks/post-commit && chmod +x .git/hooks/post-commit
+# Flow: git commit → build → sync AMA to Drive LIVE → sync GIW to Drive
+#
+# Install: npm run setup:hooks
 
-DRIVE_LIVE="/Users/anjacarrillo/Library/CloudStorage/GoogleDrive-anja687gutierrez@gmail.com/My Drive/Business/Website Projects/Abenteuer Mieten Amerika/LIVE"
-DIST_AMA="/Users/anjacarrillo/Projects/abenteuer-mieten-live/dist/client-ama"
+PROJECT_DIR="/Users/anjacarrillo/Projects/abenteuer-mieten-live"
+DIST_AMA="$PROJECT_DIR/dist/client-ama"
+DIST_GIW="$PROJECT_DIR/dist/client-giw"
+DRIVE_AMA="/Users/anjacarrillo/Library/CloudStorage/GoogleDrive-anja687gutierrez@gmail.com/My Drive/Business/Website Projects/Abenteuer Mieten Amerika/LIVE"
+DRIVE_GIW="/Users/anjacarrillo/Library/CloudStorage/GoogleDrive-anja687gutierrez@gmail.com/My Drive/Business/Website Projects/Abenteuer Mieten Amerika/LIVE-GIW"
 
-# Only sync if a build exists
+# --- 1. Rebuild dist/ from source ---
+echo "⏳ Building dist/ from source..."
+(cd "$PROJECT_DIR" && npm run build --silent) 2>&1
+BUILD_EXIT=$?
+
+if [ $BUILD_EXIT -ne 0 ]; then
+  echo "⚠ Build failed (exit $BUILD_EXIT) — Drive backup not updated"
+  echo "  Run 'npm run build' manually to diagnose"
+  exit 0  # Don't block the commit
+fi
+
+echo "✓ Build complete"
+
+# --- 2. Sync AMA to Drive ---
 if [ -d "$DIST_AMA" ]; then
-  rsync -a --delete \
-    --exclude='.DS_Store' \
-    "$DIST_AMA/" "$DRIVE_LIVE/"
-  echo "✓ Drive backup synced (AMA → LIVE)"
+  rsync -a --delete --exclude='.DS_Store' "$DIST_AMA/" "$DRIVE_AMA/"
+  echo "✓ Drive synced: AMA → LIVE"
 else
-  echo "⚠ No build found — run 'npm run build' first, then commit to sync Drive"
+  echo "⚠ dist/client-ama/ missing after build"
+fi
+
+# --- 3. Sync GIW to Drive ---
+if [ -d "$DIST_GIW" ]; then
+  mkdir -p "$DRIVE_GIW" 2>/dev/null
+  rsync -a --delete --exclude='.DS_Store' "$DIST_GIW/" "$DRIVE_GIW/"
+  echo "✓ Drive synced: GIW → LIVE-GIW"
+else
+  echo "⚠ dist/client-giw/ missing after build"
 fi

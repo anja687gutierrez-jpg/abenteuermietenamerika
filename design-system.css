@@ -670,7 +670,7 @@ nav { max-width: 1600px; margin: 0 auto; padding: 0 var(--space-8); display: fle
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('hero-mobile.jpg');
+    background-image: url('/hero-mobile.jpg');
     background-size: cover;
     background-position: center center;
     animation: heroPan 25s ease-in-out infinite alternate;
@@ -1421,7 +1421,7 @@ select.input-field {
    ============================================================ */
 #testimonials {
     position: relative;
-    background: linear-gradient(var(--color-glass-dark-85), var(--color-glass-dark-90)), url('testimonials-bg.jpg');
+    background: linear-gradient(var(--color-glass-dark-85), var(--color-glass-dark-90)), url('/testimonials-bg.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
